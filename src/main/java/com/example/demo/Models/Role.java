@@ -5,14 +5,30 @@ import org.springframework.data.mongodb.core.index.IndexDirection;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.io.Serializable;
+
 @Document(collection = "roles")
-public class Role {
+public class Role implements Serializable {
 
     @Id
     private String id;
-    @Indexed(unique = true, direction = IndexDirection.DESCENDING, dropDups = true)
+
+
 
     private String role;
+
+    public Role(String id, String role) {
+        this.id = id;
+        this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "role='" + role + '\'' +
+                '}';
+    }
+
     public String getId() {
         return this.id;
     }

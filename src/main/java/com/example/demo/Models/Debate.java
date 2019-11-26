@@ -14,7 +14,7 @@ import java.util.List;
 public class Debate {
     @Id
     private String id ;
-    @Indexed(name = "date")
+
    private  Date date ;
     @DBRef
     private List<Condidate> condidates ;

@@ -14,7 +14,7 @@ public class User {
     @Id
 
     private String User_id ;
-    @Indexed(name = "Name")
+
     private String name ;
   private  String cin ;
    private  String password ;
@@ -56,7 +56,7 @@ public class User {
     }
 
     public Set<Role> getRoles() {
-        return this.roles;
+        return roles;
     }
 
     public void setRoles(Set<Role> roles) {

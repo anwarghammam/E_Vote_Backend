@@ -10,7 +10,7 @@ import java.util.Set;
 @Document(collection = "Condidates")
 public class Condidate {
     @Id
-    @Indexed(name = "Id_Vote")
+
     private String  id_vote ;
     private String name ;
     private String password ;
