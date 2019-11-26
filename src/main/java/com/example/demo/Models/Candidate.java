@@ -9,13 +9,24 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import java.util.Set;
 
 @Document(collection = "candidates")
-public class Condidate  extends  User {
+public class Candidate extends  User {
 
     @Field("idVote")
-    private int idVote;
+
+    private int numVote;
     private String[] programs;
   // final result of specific candidates ;
     private int rank ;
+    @DBRef
+    private Resultat resultat ;
+
+    public Resultat getResultat() {
+        return resultat;
+    }
+
+    public void setResultat(Resultat resultat) {
+        this.resultat = resultat;
+    }
     public String[] getPrograms() {
         return this.programs;
     }
@@ -24,8 +35,8 @@ public class Condidate  extends  User {
         this.programs = programs;
     }
 
-    public int getIdVote() {
-        return idVote;
+    public int getNumVote() {
+        return numVote;
     }
 
     public int getRank() {
@@ -36,8 +47,8 @@ public class Condidate  extends  User {
         this.rank = rank;
     }
 
-    public void setIdVote(int idVote) {
-        this.idVote = idVote;
+    public void setNumVote(int idVote) {
+        this.numVote = idVote;
     }
 }
 

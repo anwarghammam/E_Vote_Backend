@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
 
-public interface CondidateRepo extends MongoRepository<Candidate, String> {
+public interface CandidateRepo extends MongoRepository<Candidate, String> {
 
     Candidate findByName(String name) ;
 

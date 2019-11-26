@@ -5,6 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.Date;
 import java.util.List;
@@ -14,17 +15,17 @@ import java.util.List;
 public class Debate {
     @Id
     private String id ;
-    @Indexed(name = "date")
+    @Indexed
    private  Date date ;
     @DBRef
-    private List<Condidate> condidates ;
+    private List<Candidate> candidates ;
     @DBRef
     private List<User> participants ;
    private  String Subject ;
 
-    public Debate(Date date, List<Condidate> condidates, List<User> participants, String subject) {
+    public Debate(Date date, List<Candidate> candidates, List<User> participants, String subject) {
         this.date = date;
-        this.condidates = condidates;
+        this.candidates = candidates;
         this.participants = participants;
         this.Subject = subject;
     }
@@ -37,12 +38,12 @@ public class Debate {
         this.date = date;
     }
 
-    public List<Condidate> getCondidates() {
-        return this.condidates;
+    public List<Candidate> getCandidates() {
+        return this.candidates;
     }
 
-    public void setCondidates(List<Condidate> condidates) {
-        this.condidates = condidates;
+    public void setCondidates(List<Candidate> candidates) {
+        this.candidates = candidates;
     }
 
     public List<User> getParticipants() {
@@ -55,6 +56,18 @@ public class Debate {
 
     public String getSubject() {
         return this.Subject;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setCandidates(List<Candidate> candidates) {
+        this.candidates = candidates;
     }
 
     public void setSubject(String subject) {
