@@ -11,12 +11,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import javax.annotation.Generated;
 import java.util.Set;
 
-@Document(collection="users")
+@Document(collection="user")
 
 public class User {
     @Id
 
     private String user_id ;
+
 
     private String name ;
     private  String cin ;
@@ -130,7 +131,7 @@ public class User {
     }
 
     public Set<Role> getRoles() {
-        return this.roles;
+        return roles;
     }
 
     public void setRoles(Set<Role> roles) {

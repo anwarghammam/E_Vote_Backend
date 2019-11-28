@@ -15,6 +15,7 @@ import java.util.List;
 public class Debate {
     @Id
     private String id ;
+
    private  Date date ;
     @DBRef
     private List<Candidate> candidates ;

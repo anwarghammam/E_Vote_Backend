@@ -1,5 +1,11 @@
 package com.example.demo.Controller;
 
+
+import com.example.demo.Models.User;
+import com.example.demo.repositories.UserRepo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+
 import com.example.demo.Models.Candidate;
 import com.example.demo.Models.Resultat;
 import com.example.demo.Models.User;
@@ -10,22 +16,32 @@ import com.example.demo.repositories.UserRepo;
 import com.example.demo.repositories.VoteRepo;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/api/auth")
+
+@RequestMapping("")
 public class UserController {
+    @Autowired
+    private UserRepo userRepo ;
     @Autowired
     CandidateRepo candidateRepo;
     @Autowired
     VoteRepo voteRepo ;
-    @Autowired
-    UserRepo userRepo ;
+
   @Autowired
   ResultatRepo resultatRepo ;
+
+
+
+    @GetMapping("/allusers")
+    public List<User> allusers(){
+        return this.userRepo.findAll();
+    }
 
     @PostMapping("/vote")
       public void  vote(@RequestParam String cin  , @RequestParam String idVote , @RequestParam int indexCandidate) {
@@ -82,6 +98,10 @@ public class UserController {
             // test gender - region - status of user and update resultat
             //  Candidate candidate  =  candidateRepo.findByNumVote(numCandidate) ;*/
 
+
         }
     }
 }
+
+
+
