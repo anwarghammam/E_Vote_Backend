@@ -14,13 +14,12 @@ public class Resultat {
     @Id
 
     private  String id ;
-    @Indexed
     private int  resultatFinal ;
     private int resultatParGenderFemme;
     private int resultatParGnederHomme ;
-    private String resultatParAgeJeune ;
-    private String resultatparAgeMoyen ;
-    private String resultatparAgeVieux;
+    private int resultatParAgeJeune ;
+    private int resultatparAgeMoyen ;
+    private int resultatparAgeVieux;
     @DBRef
     private List   <Region>  resultatParRegison ;
 
@@ -29,7 +28,7 @@ public class Resultat {
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.id = id ;
     }
 
     public int getResultatFinal() {
@@ -56,27 +55,27 @@ public class Resultat {
         this.resultatParGnederHomme = resultatParGnederHomme;
     }
 
-    public String getResultatParAgeJeune() {
+    public int getResultatParAgeJeune() {
         return resultatParAgeJeune;
     }
 
-    public void setResultatParAgeJeune(String resultatParAgeJeune) {
+    public void setResultatParAgeJeune(int resultatParAgeJeune) {
         this.resultatParAgeJeune = resultatParAgeJeune;
     }
 
-    public String getResultatparAgeMoyen() {
+    public int getResultatparAgeMoyen() {
         return resultatparAgeMoyen;
     }
 
-    public void setResultatparAgeMoyen(String resultatparAgeMoyen) {
+    public void setResultatparAgeMoyen(int resultatparAgeMoyen) {
         this.resultatparAgeMoyen = resultatparAgeMoyen;
     }
 
-    public String getResultatparAgeVieux() {
+    public int getResultatparAgeVieux() {
         return resultatparAgeVieux;
     }
 
-    public void setResultatparAgeVieux(String resultatparAgeVieux) {
+    public void setResultatparAgeVieux(int resultatparAgeVieux) {
         this.resultatparAgeVieux = resultatparAgeVieux;
     }
 

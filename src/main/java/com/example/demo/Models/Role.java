@@ -11,7 +11,7 @@ public class Role {
 
     @Id
     private String id;
-    @Indexed
+
     private String role;
     public String getId() {
         return this.id;

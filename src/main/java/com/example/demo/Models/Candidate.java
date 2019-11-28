@@ -12,7 +12,6 @@ import java.util.Set;
 public class Candidate extends  User {
 
     @Field("idVote")
-
     private int numVote;
     private String[] programs;
   // final result of specific candidates ;
@@ -50,6 +49,15 @@ public class Candidate extends  User {
     public void setNumVote(int idVote) {
         this.numVote = idVote;
     }
+
+    public Candidate(String name, String cin, String password, Set<Role> roles) {
+        super(name, cin, password, roles);
+    }
+
+    public Candidate() {}
+
+
 }
+
 
 

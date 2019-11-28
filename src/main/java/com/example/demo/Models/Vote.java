@@ -11,8 +11,8 @@ import java.util.List;
 @Document("votes")
 public class Vote {
     @Id
-    @Indexed
-    private int idVote ;
+
+    private String  idVote ;
     private Date date_Debut ;
     // lena bech na3arfu ama election presidentielles / legisltaives ect
     private String type ;
@@ -21,11 +21,32 @@ public class Vote {
     List<Candidate> listCandidatesParticipents ;
      private  int totalParticipent ;
 
-    public int getIdVote() {
+    public Vote() {
+    }
+
+    public Vote(String idVote, int totalParticipent) {
+        this.idVote = idVote;
+        this.totalParticipent = totalParticipent;
+    }
+
+    public Vote(int totalParticipent) {
+        this.totalParticipent = totalParticipent;
+    }
+
+    public Vote(String idVote, Date date_Debut, String type, Date dateEnd, List<Candidate> listCandidatesParticipents, int totalParticipent) {
+        this.idVote = idVote;
+        this.date_Debut = date_Debut;
+        this.type = type;
+        this.dateEnd = dateEnd;
+        this.listCandidatesParticipents = listCandidatesParticipents;
+        this.totalParticipent = totalParticipent;
+    }
+
+    public String getIdVote() {
         return idVote;
     }
 
-    public void setIdVote(int idVote) {
+    public void setIdVote(String idVote) {
         this.idVote = idVote;
     }
 

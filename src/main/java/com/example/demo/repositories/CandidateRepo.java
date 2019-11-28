@@ -8,10 +8,6 @@ import java.util.List;
 public interface CandidateRepo extends MongoRepository<Candidate, String> {
 
     Candidate findByName(String name) ;
-
-    @Override
-    List<Candidate> findAll();
-
-
     Candidate findByNumVote (int numVote) ;
+    Candidate findByCin(String cin);
 }
