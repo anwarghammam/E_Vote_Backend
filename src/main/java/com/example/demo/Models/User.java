@@ -2,6 +2,8 @@ package com.example.demo.Models;
 
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.PersistenceConstructor;
+import org.springframework.data.mongodb.core.index.IndexDirection;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -10,24 +12,86 @@ import javax.annotation.Generated;
 import java.util.Set;
 
 @Document(collection="user")
+
 public class User {
     @Id
 
     private String User_id ;
-
     private String name ;
-  private  String cin ;
-   private  String password ;
+    private  String cin ;
+    private  String password ;
     @DBRef
     private Set<Role> roles;
-
-
+    private String region ;
+    private String age ;
+    private  String email ;
+    private String status ;
+    private String gender ;
+    private String occupation ;
+    @PersistenceConstructor
     public User(String name, String cin, String password, Set<Role> roles) {
         this.name = name;
         this.cin = cin;
         this.password = password;
         this.roles = roles;
     }
+
+    public String getUser_id() {
+        return User_id;
+    }
+
+    public void setUser_id(String user_id) {
+        User_id = user_id;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getOccupation() {
+        return occupation;
+    }
+
+    public void setOccupation(String occupation) {
+        this.occupation = occupation;
+    }
+
     public User() {
     }
 
@@ -62,4 +126,6 @@ public class User {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
+
 }

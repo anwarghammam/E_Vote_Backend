@@ -5,14 +5,13 @@ import com.example.demo.Models.User;
 import com.example.demo.Models.Vote;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
+import java.util.Date;
 import java.util.List;
 
-public interface UserRepo extends MongoRepository<User, String> {
-    User findUserByCin(String cin) ;
+public interface VoteRepo extends MongoRepository<Vote, String> {
 
-    List<User> findAll () ;
-
-
+    Vote findByIdVote (String idVote)  ;
+   List<Candidate> findAllByListCandidatesParticipents() ;
 
 
 
