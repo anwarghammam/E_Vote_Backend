@@ -16,7 +16,7 @@ public class Debate {
     @Id
     private String id ;
 
-   private  Date date ;
+    private  Date date ;
     @DBRef
     private List<Candidate> candidates ;
     @DBRef

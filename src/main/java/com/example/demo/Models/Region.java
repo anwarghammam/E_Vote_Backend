@@ -7,8 +7,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document("regions")
 public class Region {
     @Id
-    private  String idRegion ;
 
+    private  String idRegion ;
     private  String nomRegion ;
     private int numberVote ;
 

@@ -23,8 +23,8 @@ import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
+@RequestMapping("/api/auth")
 
-@RequestMapping("")
 public class UserController {
     @Autowired
     private UserRepo userRepo ;

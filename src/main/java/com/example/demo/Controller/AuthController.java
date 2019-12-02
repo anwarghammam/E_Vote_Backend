@@ -68,7 +68,6 @@ public class AuthController {
         userService.saveUser(user);
         Map<Object, Object> model = new HashMap<>();
 
-
         return ok(model);
     }
 }

@@ -12,7 +12,6 @@ import java.util.Set;
 public class Candidate extends  User {
 
     @Field("idVote")
-
     private int numVote;
     private String[] programs;
   // final result of specific candidates ;

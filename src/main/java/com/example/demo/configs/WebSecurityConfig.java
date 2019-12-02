@@ -42,7 +42,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().authorizeRequests()
                 .antMatchers("/api/auth/login").permitAll()
                 .antMatchers("/api/auth/register").permitAll()
-                .antMatchers("/api/auth/vote").permitAll()
                 .antMatchers("/allusers").hasAuthority("ADMIN").anyRequest().authenticated().and().csrf()
 
                 .disable().exceptionHandling().authenticationEntryPoint(unauthorizedEntryPoint()).and()
