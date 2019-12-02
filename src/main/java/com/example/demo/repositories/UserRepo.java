@@ -8,13 +8,11 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.List;
 
 public interface UserRepo extends MongoRepository<User, String> {
+
+    User findByCin(String cin) ;
+    @Override
+    List<User> findAll();
     User findUserByCin(String cin) ;
-
-    List<User> findAll () ;
-
-
-
-
 
 
 }

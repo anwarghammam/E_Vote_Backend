@@ -29,7 +29,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public User findUserByEmail(String cin) {
-        return userRepo.findUserByCin(cin);
+        return userRepo.findByCin(cin);
     }
 
     public void saveUser(User user) {
@@ -41,7 +41,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String CIN) throws UsernameNotFoundException {
 
-        User user = userRepo.findUserByCin(CIN) ;
+        User user = userRepo.findByCin(CIN) ;
         if(user != null) {
             List<GrantedAuthority> authorities = getUserAuthority(user.getRoles());
             return buildUserForAuthentication(user, authorities);

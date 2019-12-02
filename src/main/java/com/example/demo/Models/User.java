@@ -15,19 +15,21 @@ import java.util.Set;
 
 public class User {
     @Id
+    private String user_id ;
 
-    private String User_id ;
+
     private String name ;
     private  String cin ;
     private  String password ;
     @DBRef
     private Set<Role> roles;
     private String region ;
-    private String age ;
+    private int age ;
     private  String email ;
     private String status ;
     private String gender ;
     private String occupation ;
+    private  boolean voted ;
     @PersistenceConstructor
     public User(String name, String cin, String password, Set<Role> roles) {
         this.name = name;
@@ -37,26 +39,34 @@ public class User {
     }
 
     public String getUser_id() {
-        return User_id;
+        return user_id;
     }
 
     public void setUser_id(String user_id) {
-        User_id = user_id;
+        user_id = user_id;
     }
 
     public String getRegion() {
         return region;
     }
 
+    public boolean isVoted() {
+        return voted;
+    }
+
+    public void setVoted(boolean voted) {
+        this.voted = voted;
+    }
+
     public void setRegion(String region) {
         this.region = region;
     }
 
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(int age) {
         this.age = age;
     }
 

@@ -45,6 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/vote/add").permitAll()
                 .antMatchers("/vote/activate").permitAll()
                 .antMatchers("/allusers").hasAuthority("ADMIN").anyRequest().authenticated().and().csrf()
+
                 .disable().exceptionHandling().authenticationEntryPoint(unauthorizedEntryPoint()).and()
                 .apply(new JwtConfigurer(jwtTokenProvider));
         http.cors();

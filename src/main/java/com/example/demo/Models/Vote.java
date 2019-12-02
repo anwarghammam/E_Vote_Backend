@@ -31,6 +31,28 @@ public class Vote {
         this.idVote = idVote;
     }
 
+    public Vote() {
+    }
+
+    public Vote(Long idVote, int totalParticipent) {
+        this.idVote = idVote;
+        this.totalParticipent = totalParticipent;
+    }
+
+    public Vote(int totalParticipent) {
+        this.totalParticipent = totalParticipent;
+    }
+
+    public Vote(Long idVote, Date date_Debut, String type, Date dateEnd, List<Candidate> listCandidatesParticipents, int totalParticipent) {
+        this.idVote = idVote;
+        this.date_Debut = date_Debut;
+        this.type = type;
+        this.dateEnd = dateEnd;
+        this.listCandidatesParticipents = listCandidatesParticipents;
+        this.totalParticipent = totalParticipent;
+    }
+
+
     public Date getDate_Debut() {
         return date_Debut ;
     }

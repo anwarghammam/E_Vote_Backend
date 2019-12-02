@@ -43,7 +43,7 @@ public class AuthController {
         try {
             String username = user.getCin();
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, user.getPassword()));
-            String token = jwtTokenProvider.createToken(username, this.users.findUserByCin(username).getRoles());
+            String token = jwtTokenProvider.createToken(username, this.users.findByCin(username).getRoles());
             Map<Object, Object> model = new HashMap<>();
             model.put("username", username);
             model.put("token", token);
@@ -67,7 +67,7 @@ public class AuthController {
 
         userService.saveUser(user);
         Map<Object, Object> model = new HashMap<>();
-        model.put("message", "User registered successfully");
+
         return ok(model);
     }
 }
