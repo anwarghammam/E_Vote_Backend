@@ -22,7 +22,7 @@ public class UserController {
     @Autowired
     UserRepo userRepo ;
     @PostMapping("/voter")
-      public void  vote(@RequestBody int  idCandidate  ,@RequestBody String idVote , @RequestBody String idUser)
+      public void  vote(@RequestBody int  idCandidate  ,@RequestBody Long idVote , @RequestBody String idUser)
 
     {
         Vote vote = voteRepo.findByIdVote(idVote);

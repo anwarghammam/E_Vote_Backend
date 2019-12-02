@@ -12,20 +12,21 @@ import java.util.List;
 public class Vote {
     @Id
     @Indexed
-    private int idVote ;
+    private Long idVote ;
     private Date date_Debut ;
     // lena bech na3arfu ama election presidentielles / legisltaives ect
     private String type ;
     private  Date dateEnd ;
     @DBRef
     List<Candidate> listCandidatesParticipents ;
-     private  int totalParticipent ;
+    private  int totalParticipent ;
 
-    public int getIdVote() {
+    private boolean activated ;
+    public Long getIdVote() {
         return idVote;
     }
 
-    public void setIdVote(int idVote) {
+    public void setIdVote(Long idVote) {
         this.idVote = idVote;
     }
 
@@ -67,5 +68,13 @@ public class Vote {
 
     public void setTotalParticipent(int totalParticipent) {
         this.totalParticipent = totalParticipent;
+    }
+
+    public boolean isActivated() {
+        return activated;
+    }
+
+    public void setActivated(boolean activated) {
+        this.activated = activated;
     }
 }

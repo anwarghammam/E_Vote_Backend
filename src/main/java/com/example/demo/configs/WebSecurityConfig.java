@@ -42,6 +42,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().authorizeRequests()
                 .antMatchers("/api/auth/login").permitAll()
                 .antMatchers("/api/auth/register").permitAll()
+                .antMatchers("/vote/add").permitAll()
+                .antMatchers("/vote/activate").permitAll()
                 .antMatchers("/api/url_bech_n7otouha_lena/**").hasAuthority("ADMIN").anyRequest().authenticated().and().csrf()
                 .disable().exceptionHandling().authenticationEntryPoint(unauthorizedEntryPoint()).and()
                 .apply(new JwtConfigurer(jwtTokenProvider));

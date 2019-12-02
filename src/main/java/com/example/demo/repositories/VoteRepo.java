@@ -8,9 +8,9 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.Date;
 import java.util.List;
 
-public interface VoteRepo extends MongoRepository<Vote, String> {
+public interface VoteRepo extends MongoRepository<Vote, Long> {
 
-    Vote findByIdVote (String idVote)  ;
+    Vote findByIdVote (Long idVote)  ;
    List<Candidate> findAllByListCandidatesParticipents() ;
 
 
