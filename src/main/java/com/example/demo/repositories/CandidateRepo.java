@@ -11,7 +11,5 @@ public interface CandidateRepo extends MongoRepository<Candidate, String> {
 
     @Override
     List<Candidate> findAll();
-
-
-    Candidate findByNumVote (int numVote) ;
+    Candidate findByNumVote(int numVote) ;
 }

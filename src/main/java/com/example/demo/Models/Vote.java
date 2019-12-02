@@ -11,7 +11,7 @@ import java.util.List;
 @Document("votes")
 public class Vote {
     @Id
-    @Indexed
+
     private int idVote ;
     private Date date_Debut ;
     // lena bech na3arfu ama election presidentielles / legisltaives ect

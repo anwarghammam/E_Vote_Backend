@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document("comments")
 public class Comment {
      @Id
-     @Indexed
+
      private String id ;
     @DBRef
     private  Debate debate ;
