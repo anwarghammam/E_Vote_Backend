@@ -14,4 +14,5 @@ public interface UserRepo extends MongoRepository<User, String> {
     List<User> findAll();
     User findUserByCin(String cin) ;
 
+
 }

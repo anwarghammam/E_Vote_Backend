@@ -13,6 +13,7 @@ public class Vote {
     @Id
 
     private String  idVote ;
+
     private Date date_Debut ;
     // lena bech na3arfu ama election presidentielles / legisltaives ect
     private String type ;

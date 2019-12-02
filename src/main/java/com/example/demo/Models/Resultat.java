@@ -14,6 +14,7 @@ public class Resultat {
     @Id
 
     private  String id ;
+
     private int  resultatFinal ;
     private int resultatParGenderFemme;
     private int resultatParGnederHomme ;

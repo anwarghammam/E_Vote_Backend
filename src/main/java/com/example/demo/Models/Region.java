@@ -9,6 +9,7 @@ public class Region {
     @Id
 
     private  String idRegion ;
+
     private  String nomRegion ;
     private int numberVote ;
 
