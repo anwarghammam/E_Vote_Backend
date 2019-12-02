@@ -9,8 +9,11 @@ import java.util.List;
 
 public interface UserRepo extends MongoRepository<User, String> {
     User findUserByCin(String cin) ;
-    @Override
-    List<User> findAll();
+
+    List<User> findAll () ;
+
+
+
 
 
 

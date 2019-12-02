@@ -13,6 +13,4 @@ public interface VoteRepo extends MongoRepository<Vote, Long> {
     Vote findByIdVote (Long idVote)  ;
    List<Candidate> findAllByListCandidatesParticipents() ;
 
-
-
 }

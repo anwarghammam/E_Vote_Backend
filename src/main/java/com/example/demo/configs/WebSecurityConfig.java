@@ -44,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/auth/register").permitAll()
                 .antMatchers("/vote/add").permitAll()
                 .antMatchers("/vote/activate").permitAll()
-                .antMatchers("/api/url_bech_n7otouha_lena/**").hasAuthority("ADMIN").anyRequest().authenticated().and().csrf()
+                .antMatchers("/allusers").hasAuthority("ADMIN").anyRequest().authenticated().and().csrf()
                 .disable().exceptionHandling().authenticationEntryPoint(unauthorizedEntryPoint()).and()
                 .apply(new JwtConfigurer(jwtTokenProvider));
         http.cors();

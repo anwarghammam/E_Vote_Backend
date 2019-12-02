@@ -14,7 +14,7 @@ public class Resultat {
     @Id
 
     private  String id ;
-    @Indexed
+
     private int  resultatFinal ;
     private int resultatParGenderFemme;
     private int resultatParGnederHomme ;

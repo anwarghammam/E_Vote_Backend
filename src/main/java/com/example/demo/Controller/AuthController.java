@@ -1,7 +1,9 @@
 package com.example.demo.Controller;
 
+import com.example.demo.Models.Role;
 import com.example.demo.Models.User;
 import com.example.demo.configs.JwtTokenProvider;
+import com.example.demo.repositories.RoleRepo;
 import com.example.demo.repositories.UserRepo;
 import com.example.demo.services.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +14,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static org.springframework.http.ResponseEntity.ok;
 
@@ -30,11 +31,12 @@ public class AuthController {
 
     @Autowired
     UserRepo users;
+    @Autowired
+    RoleRepo rolerepo ;
 
     @Autowired
     private CustomUserDetailsService userService;
-    @Autowired
-    UserRepo userRepo ;
+
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody User user) {
@@ -54,17 +56,18 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody User user) {
+
         User userExists = userService.findUserByEmail(user.getCin());
         if (userExists != null) {
-            throw new BadCredentialsException("User with username: " + user.getCin() + " already exists");
+            throw new BadCredentialsException("User with cin: " + user.getCin() + " already exists");
         }
-        System.out.println(user.getPassword()+""+user.getCin()+""+user.getName());
+        System.out.println(user.getPassword()+"    "+user.getCin()+"     "+user.getName()+"       "+user.getRoles().toString());
+
+
+
         userService.saveUser(user);
         Map<Object, Object> model = new HashMap<>();
-        /*model.put("message", "User registered successfully");
-        List<User> list = userRepo.findAll();
-        System.out.println(list.get(0).getCin());*/
+        model.put("message", "User registered successfully");
         return ok(model);
     }
-
 }

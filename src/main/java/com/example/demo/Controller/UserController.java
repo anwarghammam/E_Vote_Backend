@@ -1,5 +1,11 @@
 package com.example.demo.Controller;
 
+
+import com.example.demo.Models.User;
+import com.example.demo.repositories.UserRepo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+
 import com.example.demo.Models.Candidate;
 import com.example.demo.Models.Resultat;
 import com.example.demo.Models.Vote;
@@ -7,20 +13,30 @@ import com.example.demo.repositories.CandidateRepo;
 import com.example.demo.repositories.UserRepo;
 import com.example.demo.repositories.VoteRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/api/auth")
+
+@RequestMapping("")
 public class UserController {
+    @Autowired
+    private UserRepo userRepo ;
     @Autowired
     CandidateRepo candidateRepo;
     @Autowired
     VoteRepo voteRepo ;
-    @Autowired
-    UserRepo userRepo ;
+
+
+    @GetMapping("/allusers")
+    public List<User> allusers(){
+        return this.userRepo.findAll();
+    }
+
+
     @PostMapping("/voter")
       public void  vote(@RequestBody int  idCandidate  ,@RequestBody Long idVote , @RequestBody String idUser)
 
@@ -39,7 +55,6 @@ public class UserController {
 
 
 
-      //  Candidate candidate  =  candidateRepo.findByNumVote(numCandidate) ;
 
-    }
-}
+
+}}
