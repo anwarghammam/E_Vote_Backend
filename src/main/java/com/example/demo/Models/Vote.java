@@ -10,9 +10,10 @@ import java.util.List;
 
 @Document("votes")
 public class Vote {
+
     @Id
     @Indexed
-    private Long idVote ;
+    private String idVote ;
 
     private Date date_Debut ;
     // lena bech na3arfu ama election presidentielles / legisltaives ect
@@ -22,19 +23,19 @@ public class Vote {
     List<Candidate> listCandidatesParticipents ;
     private  int totalParticipent ;
 
-    private boolean activated ;
-    public Long getIdVote() {
+    private Boolean activated ;
+    public String getIdVote() {
         return idVote;
     }
 
-    public void setIdVote(Long idVote) {
+    public void setIdVote(String idVote) {
         this.idVote = idVote;
     }
 
     public Vote() {
     }
 
-    public Vote(Long idVote, int totalParticipent) {
+    public Vote(String idVote, int totalParticipent) {
         this.idVote = idVote;
         this.totalParticipent = totalParticipent;
     }
@@ -43,7 +44,7 @@ public class Vote {
         this.totalParticipent = totalParticipent;
     }
 
-    public Vote(Long idVote, Date date_Debut, String type, Date dateEnd, List<Candidate> listCandidatesParticipents, int totalParticipent) {
+    public Vote(String idVote, Date date_Debut, String type, Date dateEnd, List<Candidate> listCandidatesParticipents, int totalParticipent) {
         this.idVote = idVote;
         this.date_Debut = date_Debut;
         this.type = type;
@@ -93,11 +94,11 @@ public class Vote {
         this.totalParticipent = totalParticipent;
     }
 
-    public boolean isActivated() {
+    public Boolean isActivated() {
         return activated;
     }
 
-    public void setActivated(boolean activated) {
+    public void setActivated(Boolean activated) {
         this.activated = activated;
     }
 }

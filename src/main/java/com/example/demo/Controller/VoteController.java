@@ -1,13 +1,15 @@
 package com.example.demo.Controller;
 
+import com.example.demo.Models.Candidate;
 import com.example.demo.Models.Vote;
+import com.example.demo.repositories.CandidateRepo;
 import com.example.demo.repositories.VoteRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -17,14 +19,28 @@ public class VoteController {
 
     @Autowired
     private VoteRepo voteRepo ;
-    @RequestMapping("/add")
-    public void addVote(@RequestBody Vote vote){
-      vote.setActivated(false);
-      this.voteRepo.save(vote) ;
+
+    @Autowired
+    private CandidateRepo candidateRepo ;
+    @PostMapping("/add")
+    public ResponseEntity addVote(@RequestBody Vote votes){
+
+        System.out.println(votes.isActivated());
+        votes.setActivated(null);
+        List<Candidate>candidates =new ArrayList<>() ;
+      for(int i=0;i<votes.getListCandidatesParticipents().size();i++){
+            Candidate candidate= candidateRepo.findByCin(votes.getListCandidatesParticipents().get(i).getCin());
+            candidates.add(candidate) ;
+      }
+
+      votes.setListCandidatesParticipents(candidates);
+      this.voteRepo.save(votes);
+      return new ResponseEntity("ok",HttpStatus.ACCEPTED);
     }
-    @RequestMapping("/activate")
-    public void activateVote(@RequestBody Long id){
-        System.out.println(id);
+
+    @PostMapping("/activate")
+    public void activateVote(@RequestBody String id){
+
         Vote vote=voteRepo.findByIdVote(id);
         if (vote !=null){
             System.out.println(vote.getIdVote()+""+vote.getDateEnd());
@@ -32,6 +48,19 @@ public class VoteController {
             vote.setActivated(true);
             voteRepo.save(vote);
         }
+    }
+
+    @GetMapping("/getall")
+    public  List<Vote> createListeVote(){
+        List<Vote> votes= this.voteRepo.findAll() ;
+        return  votes ;
+    }
+
+
+    @GetMapping("/getupcommingvotes")
+    public List<Vote> getUpComming(){
+    List<Vote>votes=this.voteRepo.findAllByActivated(null);
+    return  votes ;
     }
 }
 

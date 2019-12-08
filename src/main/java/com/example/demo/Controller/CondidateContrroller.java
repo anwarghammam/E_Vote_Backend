@@ -1,12 +1,15 @@
 package com.example.demo.Controller;
 
 import com.example.demo.Models.Candidate;
+import com.example.demo.Models.Role;
 import com.example.demo.repositories.CandidateRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -21,11 +24,9 @@ public class CondidateContrroller {
     @GetMapping("/allcondidates")
     List<Candidate> showall(){
         return this.condidateRepo.findAll();
-
     }
 
     @GetMapping("/search condidate/{num_vote}")
-
     public String findcondidate(@PathVariable int num_vote){
         Candidate condidate =this.condidateRepo.findByNumVote(num_vote) ;
         if (condidate==null){
@@ -36,7 +37,6 @@ public class CondidateContrroller {
             return(
                     condidate.getName()+" "+condidate.getOccupation()+" "+condidate.getStatus()
                     );
-
 
     }
 
@@ -56,13 +56,21 @@ public class CondidateContrroller {
         this.condidateRepo.save(condidate);
         return ("programs enregistred ") ;
 
-
     }
 
+    /*
+    @GetMapping("/createCandidate")
+    public void createCandidattest(){
 
+        Role role= new Role("1", "candidat");
+        Set<Role> roles=new HashSet<>() ;
+        roles.add(role);
+        Candidate candidate =new Candidate("imen","11445566","imen",roles );
+        this.condidateRepo.save(candidate);
+        Candidate candidate1 =new Candidate("anwar","11449566","anwar",roles );
+        this.condidateRepo.save(candidate1);
+        Candidate candidate2 =new Candidate("insaf","11223355","insaf",roles );
+        this.condidateRepo.save(candidate2);
 
-
-
-
-
+    } */
 }
