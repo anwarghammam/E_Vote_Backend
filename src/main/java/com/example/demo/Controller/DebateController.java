@@ -6,6 +6,8 @@ import com.example.demo.Models.Debate;
 import com.example.demo.repositories.CandidateRepo;
 import com.example.demo.repositories.DebateRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -16,9 +18,9 @@ import java.util.List;
 @RequestMapping("/api/candidate")
 
 public class DebateController {
+
     @Autowired
     DebateRepo debaterepo ;
-
 
 
     @GetMapping("/alldebates")
@@ -53,17 +55,15 @@ public class DebateController {
 
 
     @PostMapping("/create_debate")
-    public String Add_Programs(@RequestBody Debate debate ) {
+    public ResponseEntity Add_Programs(@RequestBody Debate debate ) {
        Debate debate1= this.debaterepo.findDebateByDate(debate.getDate());
-
-        if(debate1!=null)
-        {
-            return("this date is taken , you should change the date ");
-        }
-        this.debaterepo.save(debate);
-        return ("debate created ");
-
-
+       if (debate1 !=null ){
+           return  new ResponseEntity("date already taken", HttpStatus.BAD_REQUEST);
+       }
+       else {
+           this.debaterepo.save(debate);
+           return new ResponseEntity("ok",HttpStatus.ACCEPTED);
+       }
     }
 
     @GetMapping("/like/{id}")
@@ -95,9 +95,8 @@ public class DebateController {
         Debate debate = this.debaterepo.findDebateById(id);
         debate.setAngry(debate.getAngry()+1);
 
-
-
     }
+
 
 
 

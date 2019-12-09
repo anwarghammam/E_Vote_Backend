@@ -46,8 +46,10 @@ public class UserController {
         return this.userRepo.findAll();
     }
 
-   @PostMapping("/voter")
-      public void  vote(@RequestParam int  idCandidate  ,@RequestParam String idVote , @RequestParam String idUser) {
+
+    @PostMapping("/voter")
+      public void  vote(@RequestBody int  idCandidate  ,@RequestBody String idVote , @RequestBody String idUser) {
+
         Vote vote = voteRepo.findByIdVote(idVote);
         vote.setTotalParticipent(vote.getTotalParticipent() + 1);
         List<Candidate> candidateList = vote.getListCandidatesParticipents();
@@ -121,9 +123,11 @@ public class UserController {
 
     }
 
+
     @RequestMapping(value = "/vote", method = RequestMethod.GET)
       public void  vote (@RequestParam  String cin  ,@RequestParam  String idVote , @RequestParam  int indexCandidate) {
         System.out.println("--------------------------------------vote  action------------");
+
         User user = userRepo.findByCin(cin);
       // verify if the user already voted
         if (user.isVoted()) {

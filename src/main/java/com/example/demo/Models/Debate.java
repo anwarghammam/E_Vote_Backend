@@ -22,13 +22,18 @@ public class Debate {
     @DBRef
     private List<Candidate> candidates ;
     @DBRef
-    private List<User> participants ;
+   private List<User> participants ;
    private  String Subject ;
    private int likes ;
    private int loves ;
    private int hates ;
    private int wows ;
    private int angry ;
+
+   private String heure_deb ;
+   private String  heure_fin  ;
+   private Candidate candidat1;
+   private Candidate candidat2;
 
 
     public Debate(Date date, List<Candidate> candidates, List<User> participants, String subject, int likes, int loves, int hates, int wows, int angry) {
@@ -43,6 +48,9 @@ public class Debate {
         this.angry = angry;
     }
 
+    public Debate(){
+
+    }
     public Date getDate() {
         return this.date;
     }
@@ -125,5 +133,37 @@ public class Debate {
 
     public void setSubject(String subject) {
         this.Subject = subject;
+    }
+
+    public String getHeure_deb() {
+        return heure_deb;
+    }
+
+    public void setHeure_deb(String heure_deb) {
+        this.heure_deb = heure_deb;
+    }
+
+    public String getHeure_fin() {
+        return heure_fin;
+    }
+
+    public void setHeure_fin(String heure_fin) {
+        this.heure_fin = heure_fin;
+    }
+
+    public Candidate getCandidat1() {
+        return candidat1;
+    }
+
+    public void setCandidat1(Candidate candidat1) {
+        this.candidat1 = candidat1;
+    }
+
+    public Candidate getCandidat2() {
+        return candidat2;
+    }
+
+    public void setCandidat2(Candidate candidat2) {
+        this.candidat2 = candidat2;
     }
 }

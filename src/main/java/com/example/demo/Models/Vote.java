@@ -10,6 +10,7 @@ import java.util.List;
 
 @Document("votes")
 public class Vote {
+
     @Id
     @Indexed
     private String idVote ;
@@ -22,8 +23,8 @@ public class Vote {
     List<Candidate> listCandidatesParticipents ;
     private  int totalParticipent ;
 
-    private boolean activated ;
 
+    private Boolean activated ;
 
     public String getIdVote() {
         return idVote;
@@ -95,11 +96,11 @@ public class Vote {
         this.totalParticipent = totalParticipent;
     }
 
-    public boolean isActivated() {
+    public Boolean isActivated() {
         return activated;
     }
 
-    public void setActivated(boolean activated) {
+    public void setActivated(Boolean activated) {
         this.activated = activated;
     }
 }
