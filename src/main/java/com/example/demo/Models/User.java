@@ -15,6 +15,7 @@ import java.util.Set;
 
 public class User {
     @Id
+    @Indexed
     private String user_id ;
 
 

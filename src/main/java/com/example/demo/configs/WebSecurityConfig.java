@@ -44,7 +44,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/auth/register").permitAll()
                 .antMatchers("/vote/add").permitAll()
                 .antMatchers("/vote/activate").permitAll()
-                .antMatchers("/allusers").hasAuthority("ADMIN").anyRequest().authenticated().and().csrf()
+                .antMatchers("/api/candidate/allcondidates").permitAll()
+
+                .antMatchers("api/auth/allusers").hasAuthority("ADMIN").anyRequest().authenticated().and().csrf()
 
                 .disable().exceptionHandling().authenticationEntryPoint(unauthorizedEntryPoint()).and()
                 .apply(new JwtConfigurer(jwtTokenProvider));
