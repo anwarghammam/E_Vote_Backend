@@ -6,13 +6,13 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.Arrays;
 import java.util.Set;
 
 @Document(collection = "candidates")
 public class Candidate extends  User {
 
     @Field("idVote")
-
     private int numVote;
     private String[] programs;
   // final result of specific candidates ;
@@ -57,7 +57,19 @@ public class Candidate extends  User {
 
     public Candidate() {}
 
-
+    @Override
+    public String toString() {
+        return "Candidate{" +
+                "user="+ getUser_id()+
+                "user="+ getCin()+
+                "user="+ getName()+
+                "user="+ getStatus()+
+                "numVote=" + numVote +
+                ", programs=" + Arrays.toString(programs) +
+                ", rank=" + rank +
+                ", resultat=" + resultat +
+                '}';
+    }
 }
 
 

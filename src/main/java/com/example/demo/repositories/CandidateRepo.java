@@ -10,8 +10,9 @@ public interface CandidateRepo extends MongoRepository<Candidate, String> {
     Candidate findByName(String name) ;
 
     Candidate findByNumVote (int numVote) ;
-    Candidate findByCin(String cin);
 
+    Candidate findByCin(String cin);
+   Candidate findByResultat(String resultatId);
 
     @Override
     List<Candidate> findAll();

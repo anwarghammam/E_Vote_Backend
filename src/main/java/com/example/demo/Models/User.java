@@ -14,6 +14,7 @@ import java.util.Set;
 @Document(collection="user")
 
 public class User {
+
     @Id
     @Indexed
     private String user_id ;
@@ -31,6 +32,7 @@ public class User {
     private String gender ;
     private String occupation ;
     private  boolean voted ;
+
     @PersistenceConstructor
     public User(String name, String cin, String password, Set<Role> roles) {
         this.name = name;
@@ -44,7 +46,7 @@ public class User {
     }
 
     public void setUser_id(String user_id) {
-        user_id = user_id;
+        this.user_id = user_id;
     }
 
     public String getRegion() {
@@ -138,5 +140,21 @@ public class User {
         this.roles = roles;
     }
 
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "user_id='" + user_id + '\'' +
+                ", name='" + name + '\'' +
+                ", cin='" + cin + '\'' +
+                ", password='" + password + '\'' +
+                ", roles=" + roles +
+                ", region='" + region + '\'' +
+                ", age=" + age +
+                ", email='" + email + '\'' +
+                ", status='" + status + '\'' +
+                ", gender='" + gender + '\'' +
+                ", occupation='" + occupation + '\'' +
+                ", voted=" + voted +
+                '}';
+    }
 }
