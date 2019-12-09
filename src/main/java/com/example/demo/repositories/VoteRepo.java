@@ -12,9 +12,9 @@ import java.util.List;
 
 
 @Repository
-public interface VoteRepo extends MongoRepository<Vote, Long> {
+public interface VoteRepo extends MongoRepository<Vote, String> {
 
-Vote findByIdVote (Long idVote)  ;
+Vote findByIdVote (String idVote)  ;
 List<Candidate> findAllByListCandidatesParticipents() ;
 
 }

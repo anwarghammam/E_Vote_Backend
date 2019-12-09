@@ -19,11 +19,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.GeneratedValue;
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api/vote")
 
 public class UserController {
     @Autowired
@@ -44,8 +46,8 @@ public class UserController {
         return this.userRepo.findAll();
     }
 
-    @PostMapping("/voter")
-      public void  vote(@RequestBody int  idCandidate  ,@RequestBody Long idVote , @RequestBody String idUser) {
+   @PostMapping("/voter")
+      public void  vote(@RequestParam int  idCandidate  ,@RequestParam String idVote , @RequestParam String idUser) {
         Vote vote = voteRepo.findByIdVote(idVote);
         vote.setTotalParticipent(vote.getTotalParticipent() + 1);
         List<Candidate> candidateList = vote.getListCandidatesParticipents();
@@ -54,16 +56,76 @@ public class UserController {
         Resultat resultat = candidateList.get(i).getResultat();
         resultat.setResultatFinal(resultat.getResultatFinal() + 1);
     }
+    /*@PostMapping("/createVote")
+    public void creatVote(@RequestBody Vote   vote)
+
+    {
+          voteRepo.save(vote);
+    }*/
+
+    @PostMapping("/createResultat")
+    public void createsultat(@RequestBody Resultat   resultat)
+
+    {
+        resultatRepo.save(resultat);
+        Candidate candidate = candidateRepo.findByCin("1111");
+
+        candidate.setResultat(resultat);
+        candidateRepo.save(candidate);
+        Vote vote = voteRepo.findByIdVote("1");
+        List<Candidate> l = vote.getListCandidatesParticipents();
+        l.add(candidate);
+        vote.setListCandidatesParticipents(l);
+        voteRepo.save(vote);
+    }
 
 
 
+/*
+@PostMapping("/candidate")
+      public void createcandidate()
+    {  Candidate candidate1 = candidateRepo.findByCin("0000");
+       System.out.println("55555555555555555555555555555555555555555555555+++++++++++"+candidate1.getCin());
+        Vote vote = voteRepo.findByIdVote("123456789");
+    List<Candidate> l = vote.getListCandidatesParticipents();
+         l.add(candidate1);
+        System.out.println("55555555555555555555555555555555555555555555555+++++++++++"+l.size());
+         vote.setListCandidatesParticipents(l);
+         voteRepo.save(vote);
+    }*/
+    @GetMapping("/accueilUser")
+      public   List <Candidate> getAllCandidates(@RequestParam String  idVote )
+      {
+          Vote vote = voteRepo.findByIdVote(idVote);
 
+          List <Candidate>  candidates= vote.getListCandidatesParticipents();
+          return candidates ;
+      }
+      @GetMapping("/verfiSatusVote")
+      public boolean verfiSatusVote(@RequestParam String idVote)
+      {
+          Vote vote = voteRepo.findByIdVote(idVote);
 
-    @PostMapping("/vote")
-      public void  vote(@RequestParam String cin  , @RequestParam Long idVote , @RequestParam int indexCandidate) {
+          System.out.println("status vote *******************"+vote.isActivated());
+            return vote.isActivated();
 
+      }
+
+    @GetMapping("/UserVoteVerif")
+    public boolean UserVoteVerif(@RequestParam String cin)
+    {
+       User user = userRepo.findByCin(cin);
+
+        System.out.println("user voted  vote *******************"+user.isVoted());
+        return user.isVoted();
+
+    }
+
+    @RequestMapping(value = "/vote", method = RequestMethod.GET)
+      public void  vote (@RequestParam  String cin  ,@RequestParam  String idVote , @RequestParam  int indexCandidate) {
+        System.out.println("--------------------------------------vote  action------------");
         User user = userRepo.findByCin(cin);
-        // verify if the user already voted
+      // verify if the user already voted
         if (user.isVoted()) {
             System.out.println("already voted");
         }
@@ -85,7 +147,7 @@ public class UserController {
             System.out.println("++++++++++++++++++++++++++++++++++***************" + i);
             Resultat resultat = candidate1.getResultat();
             resultat.setResultatFinal(resultat.getResultatFinal() + 1);
-            if( ((user.getAge()<30) && (user.getAge() >18)))
+          if( ((user.getAge()<30) && (user.getAge() >18)))
             {
                 resultat.setResultatParAgeJeune(resultat.getResultatParAgeJeune()+1);
             }
@@ -108,11 +170,10 @@ public class UserController {
             candidateList.set(i, candidate1);
             vote.setListCandidatesParticipents(candidateList);
             voteRepo.save(vote);
-            user.setVoted(true);
+           user.setVoted(true);
             userRepo.save(user) ;
 
-            // test gender - region - status of user and update resultat
-            //  Candidate candidate  =  candidateRepo.findByNumVote(numCandidate) ;*/
+
 
 
         }

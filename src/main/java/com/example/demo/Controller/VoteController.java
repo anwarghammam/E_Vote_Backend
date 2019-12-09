@@ -22,8 +22,8 @@ public class VoteController {
       vote.setActivated(false);
       this.voteRepo.save(vote) ;
     }
-    @RequestMapping("/activate")
-    public void activateVote(@RequestBody Long id){
+   @RequestMapping("/activate")
+    public void activateVote(@RequestBody String id){
         System.out.println(id);
         Vote vote=voteRepo.findByIdVote(id);
         if (vote !=null){

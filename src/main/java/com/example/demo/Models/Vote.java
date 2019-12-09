@@ -12,7 +12,7 @@ import java.util.List;
 public class Vote {
     @Id
     @Indexed
-    private Long idVote ;
+    private String idVote ;
 
     private Date date_Debut ;
     // lena bech na3arfu ama election presidentielles / legisltaives ect
@@ -23,18 +23,20 @@ public class Vote {
     private  int totalParticipent ;
 
     private boolean activated ;
-    public Long getIdVote() {
+
+
+    public String getIdVote() {
         return idVote;
     }
 
-    public void setIdVote(Long idVote) {
+    public void setIdVote(String idVote) {
         this.idVote = idVote;
     }
 
     public Vote() {
     }
 
-    public Vote(Long idVote, int totalParticipent) {
+    public Vote(String idVote, int totalParticipent) {
         this.idVote = idVote;
         this.totalParticipent = totalParticipent;
     }
@@ -43,7 +45,7 @@ public class Vote {
         this.totalParticipent = totalParticipent;
     }
 
-    public Vote(Long idVote, Date date_Debut, String type, Date dateEnd, List<Candidate> listCandidatesParticipents, int totalParticipent) {
+    public Vote(String idVote, Date date_Debut, String type, Date dateEnd, List<Candidate> listCandidatesParticipents, int totalParticipent) {
         this.idVote = idVote;
         this.date_Debut = date_Debut;
         this.type = type;
