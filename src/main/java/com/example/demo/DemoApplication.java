@@ -1,5 +1,6 @@
 package com.example.demo;
 import com.example.demo.Models.Candidate;
+import com.example.demo.Models.Debate;
 import com.example.demo.Models.Role;
 import com.example.demo.Models.Vote;
 import com.example.demo.repositories.CandidateRepo;

@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.GeneratedValue;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -44,6 +46,10 @@ public class UserController {
     @GetMapping("/allusers")
     public List<User> allusers(){
         return this.userRepo.findAll();
+    }
+    @GetMapping("/user/{cin}")
+    public User getuser(@PathVariable String cin){
+        return this.userRepo.findByCin(cin);
     }
 
 
@@ -182,6 +188,40 @@ public class UserController {
 
         }
     }
+
+    @RequestMapping(value = "/follow/{numVote}/{cin}", method = RequestMethod.GET)
+    public int follow(@PathVariable int numVote,@PathVariable String cin){
+        Candidate c =  candidateRepo.findByNumVote(numVote);
+        System.out.println(c);
+        User user = userRepo.findByCin(cin);
+        System.out.println(user);
+        Set<User> users = c.getFollwers();
+         users.add(user);
+        System.out.println(user);
+        c.setFollwers(users) ;
+        c.setFollows(c.getFollows()+1);
+        System.out.println(user);
+        candidateRepo.save(c);
+        System.out.println(user);
+        return c.getFollows() ;
+    }
+    @RequestMapping(value = "/unfollow/{numVote}/{cin}", method = RequestMethod.GET)
+    public int unfollow(@PathVariable int numVote,@PathVariable String cin){
+        Candidate c =  candidateRepo.findByNumVote(numVote);
+        System.out.println(c);
+        User user = userRepo.findByCin(cin);
+        System.out.println(user);
+        Set<User> users = c.getFollwers();
+        users.add(user);
+        System.out.println(user);
+        c.setFollwers(users) ;
+        c.setFollows(c.getFollows()-1);
+        System.out.println(user);
+        candidateRepo.save(c);
+        System.out.println(user);
+        return c.getFollows() ;
+    }
+
 }
 
 

@@ -10,8 +10,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static io.jsonwebtoken.lang.Collections.size;
+import static jdk.nashorn.internal.objects.ArrayBufferView.length;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -23,9 +29,42 @@ public class DebateController {
     DebateRepo debaterepo ;
 
 
-    @GetMapping("/alldebates")
+    @GetMapping("/allfuturdebates")
     List<Debate> showall(){
-        return this.debaterepo.findAll();
+        Date date = new Date();
+        System.out.println(date.getDate());
+
+        List<Debate> futurdebates =new ArrayList<Debate>();
+
+        List<Debate> debates = this.debaterepo.findAll();
+          for(int i=0;i<debates.size();i++){
+
+              if(debates.get(i).getDate().compareTo(date)>0){
+                  futurdebates.add(debates.get(i));
+
+              }
+          }
+
+
+       return futurdebates ;   }
+    @GetMapping("/allcloseddebates")
+    List<Debate> closeddebates(){
+        Date date = new Date();
+        System.out.println(date.getTime());
+        System.out.println("******");
+        List<Debate> passeddebates=new ArrayList<Debate>();
+        List<Debate> debates = this.debaterepo.findAll();
+        System.out.println("******");
+        for(int i=0;i<size(debates);i++){
+            if(debates.get(i).getDate().compareTo(date)<0){
+                System.out.println("*");
+                passeddebates.add(debates.get(i));
+                System.out.println("**");
+
+            }
+        }
+        System.out.println("******");
+        return passeddebates ;
 
     }
 

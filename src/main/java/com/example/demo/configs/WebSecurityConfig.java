@@ -55,11 +55,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/vote/createResultat").permitAll()
                 .antMatchers("/api/vote/statistiqueCalcul").permitAll()
                 .antMatchers("/api/vote/loadStatistique").permitAll()
-
+                .antMatchers("/api/vote/follow").permitAll()
                 .antMatchers("/vote/*").permitAll()
                 .antMatchers("/api/candidate/*").permitAll()
                 .antMatchers("/api/candidate/allcondidates").permitAll()
-
+                .antMatchers("/api/candidate/allfuturdebates").permitAll()
                 .antMatchers("api/auth/allusers").hasAuthority("ADMIN").anyRequest().authenticated().and().csrf()
 
                 .disable().exceptionHandling().authenticationEntryPoint(unauthorizedEntryPoint()).and()

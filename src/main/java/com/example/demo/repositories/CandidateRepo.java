@@ -5,9 +5,9 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
 
-public interface CandidateRepo extends MongoRepository<Candidate, String> {
+public interface CandidateRepo extends MongoRepository<Candidate,String> {
 
-    Candidate findByName(String name) ;
+
 
     Candidate findByNumVote (int numVote) ;
 

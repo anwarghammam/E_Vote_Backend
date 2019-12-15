@@ -17,8 +17,28 @@ public class Candidate extends  User {
     private String[] programs;
   // final result of specific candidates ;
     private int rank ;
+    private Set<User> follwers ;
+    private int follows ;
     @DBRef
     private Resultat resultat ;
+
+
+
+    public int getFollows() {
+        return follows;
+    }
+
+    public void setFollows(int follows) {
+        this.follows = follows;
+    }
+
+    public Set<User> getFollwers() {
+        return follwers;
+    }
+
+    public void setFollwers(Set<User> follwers) {
+        this.follwers = follwers;
+    }
 
     public Resultat getResultat() {
         return resultat;
