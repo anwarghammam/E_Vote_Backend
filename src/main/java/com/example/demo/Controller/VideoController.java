@@ -14,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 @CrossOrigin(origins = "*")
-@RestController
+@Controller
 @RequestMapping("")
 public class VideoController {
 
@@ -23,13 +23,13 @@ public class VideoController {
     @Autowired
     private VideoRepo videorepo ;
 
-    @RequestMapping(value ="/videos/add/{title}", method = RequestMethod.POST)
-
-    public String addVideo(@PathVariable String title ,
+    @RequestMapping(value ="/videos/add", method = RequestMethod.POST)
+    public String addVideo(
                            @RequestParam("file") MultipartFile file, Model model) throws IOException {
 
-        ObjectId id = videoService.addVideo(title, file);
-        return "redirect:/videos/" + id;
+        System.out.println("jjkkjkjjk");
+       // ObjectId id = videoService.addVideo(title, file);
+        return "redirect:/videos/" ;
     }
 
 

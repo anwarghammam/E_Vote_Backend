@@ -16,8 +16,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static io.jsonwebtoken.lang.Collections.size;
-import static jdk.nashorn.internal.objects.ArrayBufferView.length;
+
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -32,7 +31,7 @@ public class DebateController {
     @GetMapping("/allfuturdebates")
     List<Debate> showall(){
         Date date = new Date();
-        System.out.println(date.getDate());
+      //  System.out.println(date.getDate());
 
         List<Debate> futurdebates =new ArrayList<Debate>();
 
@@ -55,7 +54,7 @@ public class DebateController {
         List<Debate> passeddebates=new ArrayList<Debate>();
         List<Debate> debates = this.debaterepo.findAll();
         System.out.println("******");
-        for(int i=0;i<size(debates);i++){
+        for(int i=0;i<debates.size();i++){
             if(debates.get(i).getDate().compareTo(date)<0){
                 System.out.println("*");
                 passeddebates.add(debates.get(i));
