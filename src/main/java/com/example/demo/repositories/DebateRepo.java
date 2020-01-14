@@ -7,7 +7,7 @@ import java.util.Date;
 
 public interface DebateRepo extends MongoRepository<Debate,String > {
 
-     Debate findDebateByDate(Date date) ;
+     Debate findDebateByDate(Date date);
      Debate findDebateById(String id);
 
 }

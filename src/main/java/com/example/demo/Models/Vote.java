@@ -23,7 +23,9 @@ public class Vote {
     List<Candidate> listCandidatesParticipents ;
     private  int totalParticipent ;
 
+
     private Boolean activated ;
+
     public String getIdVote() {
         return idVote;
     }

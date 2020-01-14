@@ -6,5 +6,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface ResultatRepo  extends  MongoRepository<Resultat, String>  {
  Resultat findResultatById(String resId );
+
 }
 

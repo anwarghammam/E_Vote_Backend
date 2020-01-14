@@ -29,6 +29,7 @@ public class Debate {
    private int hates ;
    private int wows ;
    private int angry ;
+   private String url_image ;
 
    private String heure_deb ;
    private String  heure_fin  ;
@@ -51,6 +52,15 @@ public class Debate {
     public Debate(){
 
     }
+
+    public String getUrl_image() {
+        return url_image;
+    }
+
+    public void setUrl_image(String url_image) {
+        this.url_image = url_image;
+    }
+
     public Date getDate() {
         return this.date;
     }

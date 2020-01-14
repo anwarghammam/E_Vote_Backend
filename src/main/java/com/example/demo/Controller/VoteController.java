@@ -23,23 +23,24 @@ public class VoteController {
     @Autowired
     private CandidateRepo candidateRepo ;
     @PostMapping("/add")
-    public ResponseEntity addVote(@RequestBody Vote votes){
+    public ResponseEntity addVote(@RequestBody Vote votes) {
 
 
         votes.setActivated(null);
-        List<Candidate>candidates =new ArrayList<>() ;
-      for(int i=0;i<votes.getListCandidatesParticipents().size();i++){
-            Candidate candidate= candidateRepo.findByCin(votes.getListCandidatesParticipents().get(i).getCin());
-            candidates.add(candidate) ;
-      }
+        List<Candidate> candidates = new ArrayList<>();
+        for (int i = 0; i < votes.getListCandidatesParticipents().size(); i++) {
+            Candidate candidate = candidateRepo.findByCin(votes.getListCandidatesParticipents().get(i).getCin());
+            candidates.add(candidate);
+        }
 
-      votes.setListCandidatesParticipents(candidates);
-      this.voteRepo.save(votes);
-      return new ResponseEntity("ok",HttpStatus.ACCEPTED);
+        votes.setListCandidatesParticipents(candidates);
+        this.voteRepo.save(votes);
+        return new ResponseEntity("ok", HttpStatus.ACCEPTED);
     }
 
     @PostMapping("/activate")
     public void activateVote(@RequestBody String id){
+
 
         Vote vote=voteRepo.findByIdVote(id);
         if (vote !=null){

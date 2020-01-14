@@ -1,28 +1,25 @@
 package com.example.demo.Models;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.IndexDirection;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.List;
 
 @Document(collection="resultats")
-public class Resultat {
+public class Resultat implements Comparable< Resultat>{
     @Id
 
     private  String id ;
-
     private int  resultatFinal ;
     private int resultatParGenderFemme;
-    private int resultatParGnederHomme ;
+    private int resultatParGenderHomme ;
     private int resultatParAgeJeune ;
     private int resultatparAgeMoyen ;
     private int resultatparAgeVieux;
     @DBRef
     private List   <Region>  resultatParRegison ;
+    private int resultatFinal1;
 
     public String getId() {
         return id;
@@ -49,11 +46,11 @@ public class Resultat {
     }
 
     public int getResultatParGnederHomme() {
-        return resultatParGnederHomme;
+        return resultatParGenderHomme;
     }
 
     public void setResultatParGnederHomme(int resultatParGnederHomme) {
-        this.resultatParGnederHomme = resultatParGnederHomme;
+        this.resultatParGenderHomme = resultatParGnederHomme;
     }
 
     public int getResultatParAgeJeune() {
@@ -87,6 +84,14 @@ public class Resultat {
     public void setResultatParRegison(List<Region> resultatParRegison) {
         this.resultatParRegison = resultatParRegison;
     }
+
+    @Override
+    public int compareTo(Resultat o) {
+
+        return (this.resultatFinal - o.getResultatFinal());
+    }
+
+
 }
 
 
