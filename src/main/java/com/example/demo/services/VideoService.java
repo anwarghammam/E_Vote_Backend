@@ -26,22 +26,26 @@ public class VideoService {
     @Autowired
     private GridFsOperations operations;
 
-    public  Object addVideo(String title ,MultipartFile file) throws IOException {
+    public  String addVideo(String title ,MultipartFile file) throws IOException {
         DBObject metaData = new BasicDBObject();
         metaData.put("type", "video");
         metaData.put("title", title);
         ObjectId id = gridFsTemplate.store(
                 file.getInputStream(), file.getName(), file.getContentType(), metaData);
 
-        return (JSON.parse(id.toString()));
+        return id.toString() ;
     }
 
-    public video getVideo(String id) throws IllegalStateException, IOException {
+    public video getVideo(Object id) throws IllegalStateException, IOException {
         GridFSFile file = gridFsTemplate.findOne(new Query(Criteria.where("_id").is(id)));
-        video video = new video();
-        video.setTitle(file.getMetadata().get("title").toString());
-        video.setStream(operations.getResource(file).getInputStream());
+        System.out.println("*");
 
+        video video = new video();
+        System.out.println("**");
+        //video.setTitle(file.getMetadata().get("title").toString());
+        System.out.println("***");
+        video.setStream(operations.getResource(file).getInputStream());
+        System.out.println("****");
 
 
 
