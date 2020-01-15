@@ -7,6 +7,7 @@ import com.example.demo.repositories.RoleRepo;
 import com.example.demo.repositories.UserRepo;
 import com.example.demo.services.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -46,6 +47,7 @@ public class AuthController {
             String token = jwtTokenProvider.createToken(username, this.users.findByCin(username).getRoles());
             Map<Object, Object> model = new HashMap<>();
             model.put("username", username);
+            //model.put("role",this.users.findByCin(username).getRoles());
             model.put("token", token);
             return ok(model);
         } catch (AuthenticationException e) {
@@ -59,15 +61,19 @@ public class AuthController {
 
         User userExists = userService.findUserByEmail(user.getCin());
         if (userExists != null) {
-            throw new BadCredentialsException("User with cin: " + user.getCin() + " already exists");
+            return new ResponseEntity("User with cin: " + user.getCin() + " already exists", HttpStatus.BAD_REQUEST);
+
         }
-        System.out.println(user.getPassword()+"    "+user.getCin()+"     "+user.getName()+"       "+user.getRoles().toString());
+             Role e = new Role("5ddd8215fdb681718c00f54f","USER");
 
 
-
+        Set<Role> roles = new HashSet<Role>();
+        roles.add(e) ;
+        user.setRoles(roles);
         userService.saveUser(user);
-        Map<Object, Object> model = new HashMap<>();
+       System.out.println(user.toString());
 
-        return ok(model);
+
+        return new ResponseEntity("done", HttpStatus.OK);
     }
 }

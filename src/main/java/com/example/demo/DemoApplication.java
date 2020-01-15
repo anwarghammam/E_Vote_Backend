@@ -1,5 +1,6 @@
 package com.example.demo;
 import com.example.demo.Models.Candidate;
+import com.example.demo.Models.Debate;
 import com.example.demo.Models.Role;
 import com.example.demo.Models.Vote;
 import com.example.demo.repositories.CandidateRepo;
@@ -9,6 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.multipart.MultipartResolver;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -25,5 +27,6 @@ public class DemoApplication {
         SpringApplication.run(DemoApplication.class, args);
 
 
-    }
-}
+    }}
+
+

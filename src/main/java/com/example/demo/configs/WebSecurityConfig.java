@@ -60,12 +60,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/vote/totalJeunes").permitAll()
                 .antMatchers("/api/vote/totalVieux").permitAll()
                 .antMatchers("/api/vote/loadStatistique").permitAll()
+
                 .antMatchers("/api/vote/detailsStatistique").permitAll()
                 .antMatchers("/api/vote/totalParticipents").permitAll()
+
+                .antMatchers("/api/vote/follow").permitAll()
+
                 .antMatchers("/vote/*").permitAll()
                 .antMatchers("/api/candidate/*").permitAll()
+                .antMatchers("/api/candidate/allcondidates").permitAll()
+                .antMatchers("/api/candidate/allfuturdebates").permitAll()
+                .antMatchers("/videos/*").permitAll()
+                .antMatchers("/videos/add/*").permitAll()
+                .antMatchers("/videos/stream/*").permitAll()
+                .antMatchers("api/auth/allusers").hasAuthority("ADMIN").anyRequest().authenticated().and().csrf()
 
-                .antMatchers("/allusers").hasAuthority("ADMIN").anyRequest().authenticated().and().csrf()
                 .disable().exceptionHandling().authenticationEntryPoint(unauthorizedEntryPoint()).and()
                 .apply(new JwtConfigurer(jwtTokenProvider));
         http.cors();
