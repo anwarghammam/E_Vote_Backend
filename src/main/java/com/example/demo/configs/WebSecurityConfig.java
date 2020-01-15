@@ -62,6 +62,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/candidate/allfuturdebates").permitAll()
                 .antMatchers("/videos/*").permitAll()
                 .antMatchers("/videos/add/*").permitAll()
+                .antMatchers("/videos/stream/*").permitAll()
                 .antMatchers("api/auth/allusers").hasAuthority("ADMIN").anyRequest().authenticated().and().csrf()
 
                 .disable().exceptionHandling().authenticationEntryPoint(unauthorizedEntryPoint()).and()
