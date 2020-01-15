@@ -151,11 +151,11 @@ public class UserController {
             System.out.println("++++++++++++++++++++++++++++++++++***************" + i);
             Resultat resultat = candidate1.getResultat();
             resultat.setResultatFinal(resultat.getResultatFinal() + 1);
-          if( ((user.getAge()<30) && (user.getAge() >18)))
+          if( ((user.getAge()<30) && (user.getAge() >=18)))
             {
                 resultat.setResultatParAgeJeune(resultat.getResultatParAgeJeune()+1);
             }
-            if( ((user.getAge()>30) && (user.getAge() <60))) {
+            if( ((user.getAge()>=30) && (user.getAge() <60))) {
                 resultat.setResultatparAgeMoyen(resultat.getResultatparAgeMoyen()+1);
             }
               else {

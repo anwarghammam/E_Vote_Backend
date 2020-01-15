@@ -111,12 +111,12 @@ public class Statistique {
 
 
         int totalP = candidate.getResultat().getResultatFinal();
-         double pcFemme = (double) ((candidate.getResultat().getResultatParGenderFemme()) / totalP) ;
+         double pcFemme = (double) (((candidate.getResultat().getResultatParGenderFemme()) / totalP))*100 ;
 
-         double pcHomme =  (double)(candidate.getResultat().getResultatParGnederHomme())/ totalP ;
-         double pcJeune  = (double) (candidate.getResultat().getResultatParAgeJeune())/ totalP ;
-         double pcAdult = (double)(candidate.getResultat().getResultatparAgeMoyen())/ totalP ;
-         double pcVieux =  (double) (candidate.getResultat().getResultatparAgeVieux())/ totalP ;
+         double pcHomme =  (double)((candidate.getResultat().getResultatParGnederHomme())/ totalP)*100 ;
+         double pcJeune  = (double) ((candidate.getResultat().getResultatParAgeJeune())/ totalP)*100 ;
+         double pcAdult = (double)((candidate.getResultat().getResultatparAgeMoyen())/ totalP )*100;
+         double pcVieux =  (double)((candidate.getResultat().getResultatparAgeVieux())/ totalP)*100 ;
         this.setTotal(totalP);
         this.setCandidate(candidate);
         this.setPourcentageFemme(pcFemme);

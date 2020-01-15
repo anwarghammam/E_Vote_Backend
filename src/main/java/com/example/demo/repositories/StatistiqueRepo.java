@@ -7,4 +7,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 public interface StatistiqueRepo extends  MongoRepository<Statistique,String> {
 
     Statistique findByCandidate(Candidate candidate);
+    Statistique findByIdStatistique(String id) ;
 }
