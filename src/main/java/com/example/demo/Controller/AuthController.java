@@ -43,8 +43,12 @@ public class AuthController {
     public ResponseEntity login(@RequestBody User user) {
         try {
             String username = user.getCin();
+            System.out.println(username);
+            System.out.println(this.users.findByCin(username).toString());
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, user.getPassword()));
+
             String token = jwtTokenProvider.createToken(username, this.users.findByCin(username).getRoles());
+
             Map<Object, Object> model = new HashMap<>();
             model.put("username", username);
             //model.put("role",this.users.findByCin(username).getRoles());

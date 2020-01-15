@@ -4,6 +4,7 @@ import com.example.demo.Models.video;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 import com.mongodb.client.gridfs.model.GridFSFile;
+import com.mongodb.util.JSON;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 @Service
 public class VideoService {
@@ -24,13 +26,14 @@ public class VideoService {
     @Autowired
     private GridFsOperations operations;
 
-    public  ObjectId addVideo(String title ,MultipartFile file) throws IOException {
+    public  Object addVideo(String title ,MultipartFile file) throws IOException {
         DBObject metaData = new BasicDBObject();
         metaData.put("type", "video");
         metaData.put("title", title);
         ObjectId id = gridFsTemplate.store(
                 file.getInputStream(), file.getName(), file.getContentType(), metaData);
-        return id ;
+
+        return (JSON.parse(id.toString()));
     }
 
     public video getVideo(String id) throws IllegalStateException, IOException {
@@ -38,6 +41,11 @@ public class VideoService {
         video video = new video();
         video.setTitle(file.getMetadata().get("title").toString());
         video.setStream(operations.getResource(file).getInputStream());
+
+
+
+
+
         return video ;
     }
 }
