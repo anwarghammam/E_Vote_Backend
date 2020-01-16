@@ -8,6 +8,7 @@ import com.example.demo.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.DecimalFormat;
 import java.util.*;
 
 @CrossOrigin(origins = "*")
@@ -76,8 +77,7 @@ public List<Candidate> loadReultat(@RequestParam String  idVote)
 {
     Vote vote = voteRepo.findByIdVote(idVote);
    List<Candidate> l = vote.getListCandidatesParticipents();
-      return(l);
-
+   return l ;
 }
 @GetMapping("/statistiqueCalcul")
 public List<Statistique>  statistiqueCalcul(@RequestParam  String idVote)
@@ -96,7 +96,9 @@ public List<Statistique>  statistiqueCalcul(@RequestParam  String idVote)
         int totalC= l.get(i).getResultat().getResultatFinal();
         int totalP = vote.getTotalParticipent() ;
         double pourcentageVote = (double)  totalC / totalP ;
-        statistique.setPourcentageTotal(pourcentageVote);
+
+        double toto=(double)((int)(pourcentageVote*100))/100;System.out.println("lllllllllllllllllllllllllllllllllllllll"+toto);
+        statistique.setPourcentageTotal(toto);
         statistiqueRepo.save(statistique);
         statistiques.add(statistique);
         System.out.println("***************************"+totalC );
@@ -115,4 +117,84 @@ public List<Statistique>  statistiqueCalcul(@RequestParam  String idVote)
        return statistiqueRepo.findAll() ;
     }
 
+    @GetMapping ("/detailsStatistique")
+    public  Statistique  detailsStatistique(@RequestParam  String idStatistique)
+
+    {
+              Statistique statistique = statistiqueRepo.findByIdStatistique(idStatistique) ;
+              System.out.println(statistique.getPourcentageVieux());
+                return  statistique ;
+
+    }
+@GetMapping("/totalParticipents")
+public int  getTotlaPartcipantsVote(@RequestParam  String idVote)
+{
+     Vote vote = voteRepo.findByIdVote(idVote);
+
+     System.out.println(vote.getTotalParticipent());
+    return vote.getTotalParticipent();
+}
+    @GetMapping("/totalFemmes")
+public int getGenralResult(@RequestParam  String idVote)
+{
+    Vote vote = voteRepo.findByIdVote(idVote);
+    List<Candidate> l = vote.getListCandidatesParticipents();
+  int nbr = 0 ;
+    for(int i =0 ;i< l.size(); i++) {
+     nbr  = nbr+ l.get(i).getResultat().getResultatParGenderFemme();
+
+    }
+    return  nbr ;
+}
+    @GetMapping("/totalHommes")
+    public int getGenralResultHomme(@RequestParam  String idVote)
+    {
+        Vote vote = voteRepo.findByIdVote(idVote);
+        List<Candidate> l = vote.getListCandidatesParticipents();
+        int nbr = 0 ;
+        for(int i =0 ;i< l.size(); i++) {
+            nbr  = nbr+ l.get(i).getResultat().getResultatParGnederHomme();
+
+        }
+        return  nbr ;
+    }
+
+    @GetMapping("/totalJeunes")
+    public int getGenralResultJeunes(@RequestParam  String idVote)
+    {
+        Vote vote = voteRepo.findByIdVote(idVote);
+        List<Candidate> l = vote.getListCandidatesParticipents();
+        int nbr = 0 ;
+        for(int i =0 ;i< l.size(); i++) {
+            nbr  = nbr+ l.get(i).getResultat().getResultatParAgeJeune();
+
+        }
+        return  nbr ;
+    }
+
+    @GetMapping("/totalAdultes")
+    public int getGenralResultAdults(@RequestParam  String idVote)
+    {
+        Vote vote = voteRepo.findByIdVote(idVote);
+        List<Candidate> l = vote.getListCandidatesParticipents();
+        int nbr = 0 ;
+        for(int i =0 ;i< l.size(); i++) {
+            nbr  = nbr+ l.get(i).getResultat().getResultatparAgeMoyen();
+
+        }
+        return  nbr ;
+    }
+
+    @GetMapping("/totalVieux")
+    public int getGenralResultVieux(@RequestParam  String idVote)
+    {
+        Vote vote = voteRepo.findByIdVote(idVote);
+        List<Candidate> l = vote.getListCandidatesParticipents();
+        int nbr = 0 ;
+        for(int i =0 ;i< l.size(); i++) {
+            nbr  = nbr+ l.get(i).getResultat().getResultatparAgeVieux();
+
+        }
+        return  nbr ;
+    }
 }

@@ -15,6 +15,7 @@ import java.util.List;
 public interface VoteRepo extends MongoRepository<Vote, String> {
 
 Vote findByIdVote (String idVote)  ;
+
 List<Candidate> findAllByListCandidatesParticipents() ;
 List<Vote>findAllByActivated(Boolean activated);
 }
