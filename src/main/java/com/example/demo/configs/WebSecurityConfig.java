@@ -60,8 +60,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/vote/totalJeunes").permitAll()
                 .antMatchers("/api/vote/totalVieux").permitAll()
                 .antMatchers("/api/vote/loadStatistique").permitAll()
-
                 .antMatchers("/api/vote/detailsStatistique").permitAll()
+                .antMatchers("/api/candidate/participate/*").permitAll()
+                .antMatchers("/api/candidate/angry/*").permitAll()
+                .antMatchers("/api/candidate/like/*").permitAll()
                 .antMatchers("/api/vote/totalParticipents").permitAll()
 
                 .antMatchers("/api/vote/follow").permitAll()
