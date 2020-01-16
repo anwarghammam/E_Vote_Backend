@@ -70,7 +70,7 @@ public class VoteController {
         return votes ;
     }
 
-    @PostMapping("activatedesactivate")
+    @PostMapping("/activatedesactivate")
     public List<Vote> activate(@RequestBody List<Vote>votes){
         System.out.println("hhhh");
         for (int i=0;i<votes.size();i++){
@@ -79,7 +79,7 @@ public class VoteController {
         return votes ;
     }
 
-    @GetMapping("vote")
+    @GetMapping("/vote")
     public Vote getOneVote(){
         return this.voteRepo.findAllByActivated(new Boolean(true)).get(0) ;
     }

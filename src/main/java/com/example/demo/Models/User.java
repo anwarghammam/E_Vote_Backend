@@ -23,7 +23,7 @@ public class User {
     private String name ;
     private  String cin ;
     private  String password ;
-    @DBRef
+    @DBRef(lazy = false)
     private Set<Role> roles;
     private String region ;
     private int age ;

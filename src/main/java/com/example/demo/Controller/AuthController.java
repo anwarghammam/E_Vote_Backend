@@ -44,8 +44,9 @@ public class AuthController {
         try {
             String username = user.getCin();
             System.out.println(username);
-            System.out.println(this.users.findByCin(username).toString());
+
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, user.getPassword()));
+
 
             String token = jwtTokenProvider.createToken(username, this.users.findByCin(username).getRoles());
 
@@ -75,8 +76,8 @@ public class AuthController {
         roles.add(e) ;
         user.setRoles(roles);
         userService.saveUser(user);
-       System.out.println(user.toString());
-
+        System.out.println(user.toString());
+        System.out.println(this.users.findByCin(user.getCin()).toString());
 
         return new ResponseEntity("done", HttpStatus.OK);
     }
