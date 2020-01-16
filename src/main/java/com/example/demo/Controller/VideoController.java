@@ -5,6 +5,7 @@ import com.example.demo.repositories.VideoRepo;
 import com.example.demo.services.VideoService;
 import com.mongodb.client.gridfs.model.GridFSFile;
 import com.mongodb.util.JSON;
+import com.sun.deploy.net.HttpResponse;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
@@ -24,6 +25,8 @@ import javax.servlet.MultipartConfigElement;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -37,25 +40,41 @@ public class VideoController {
 
     //@RequestMapping(value ="/videos/add/{title}",method = RequestMethod.POST )
     @PostMapping(value ="/videos/add/{title}", consumes = { "multipart/form-data" })
-    public String addVideo(@PathVariable String title ,
+    public int addVideo(@PathVariable String title ,
                            @RequestParam("video") MultipartFile file, Model model) throws IOException {
 
-        String id = videoService.addVideo(title, file);
-        return id;
+        Object id = videoService.addVideo(title, file);
+        System.out.println(id) ;
+        return id.hashCode();
     }
 
 
-    @GetMapping("/videos/{id}")
+   /* @GetMapping("/videos/{id}")
     public  String getVideo(@PathVariable Object id, Model model) throws Exception {
         video video = videoService.getVideo(id);
 
         //model.addAttribute("title", video.getTitle());
         model.addAttribute("url", "/videos/stream/" + id);
         return "videos";
-    }
-    @GetMapping("/videos/stream/{id}")
-    public void streamVideo(@PathVariable String id, HttpServletResponse response) throws Exception {
-        video video = videoService.getVideo(id);
+    }*/
+    @GetMapping("/videos/stream/{name}")
+    public void streamVideo(@PathVariable String name, HttpServletResponse response) throws Exception {
+        video video = videoService.getVideo(name);
+        response.setHeader("filename",name);
+        System.out.println((response.getHeader("filename")));
         FileCopyUtils.copy(video.getStream(), response.getOutputStream());
-    }
+
 }
+    @GetMapping("/videos/stream/")
+    public void streamVideo( HttpServletResponse response) throws Exception {
+        List<video> videos = videoService.getallvideos();
+        System.out.println(videos);
+        for (video video:videos
+             ) {
+
+
+            FileCopyUtils.copy(video.getStream(), response.getOutputStream());
+        }
+
+
+    }}
