@@ -91,7 +91,7 @@ public List<Statistique>  statistiqueCalcul(@RequestParam  String idVote)
        statistique.calcul(l.get(i));
 
        //statistique.setPourcentageTotal();
-       statistiqueRepo.save(statistique);
+       //statistiqueRepo.save(statistique);
 
         int totalC= l.get(i).getResultat().getResultatFinal();
         int totalP = vote.getTotalParticipent() ;

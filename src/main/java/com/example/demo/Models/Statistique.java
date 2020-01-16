@@ -111,12 +111,36 @@ public class Statistique {
 
 
         int totalP = candidate.getResultat().getResultatFinal();
-         double pcFemme = (double) (((candidate.getResultat().getResultatParGenderFemme()) / totalP))*100 ;
+        int totalFemme = candidate.getResultat().getResultatParGenderFemme() ;
 
-         double pcHomme =  (double)((candidate.getResultat().getResultatParGnederHomme())/ totalP)*100 ;
-         double pcJeune  = (double) ((candidate.getResultat().getResultatParAgeJeune())/ totalP)*100 ;
-         double pcAdult = (double)((candidate.getResultat().getResultatparAgeMoyen())/ totalP )*100;
-         double pcVieux =  (double)((candidate.getResultat().getResultatparAgeVieux())/ totalP)*100 ;
+        double pcF = (double)totalFemme/totalP;
+         double pcFemme = (double)((int)(pcF*100)) ;
+
+
+        int totalHommme = candidate.getResultat().getResultatParGnederHomme() ;
+
+        double pcH = (double)totalHommme/totalP;
+         double pcHomme = (double)((int)(pcH*100)) ;
+
+         int totalJeunes = candidate.getResultat().getResultatParAgeJeune() ;
+
+         double pcJ = (double)totalJeunes/totalP;
+         double pcJeune = (double)((int)(pcJ*100));
+
+         int totalAdulte = candidate.getResultat().getResultatparAgeMoyen() ;
+
+         double pcA = (double)totalAdulte/totalP;
+         double pcAdult = (double)((int)(pcA*100));
+
+
+         int totalVieux = candidate.getResultat().getResultatparAgeVieux() ;
+
+         double pcV = (double)totalVieux/totalP;
+         double pcVieux = (double)((int)(pcV*100)) ;
+         //double pcHomme =  (double)((candidate.getResultat().getResultatParGnederHomme())/ totalP)*100 ;
+         //double pcJeune  = (double) ((candidate.getResultat().getResultatParAgeJeune())/ totalP)*100 ;
+        // double pcAdult = (double)((candidate.getResultat().getResultatparAgeMoyen())/ totalP )*100;
+        // double pcVieux =  (double)((candidate.getResultat().getResultatparAgeVieux())/ totalP)*100 ;
         this.setTotal(totalP);
         this.setCandidate(candidate);
         this.setPourcentageFemme(pcFemme);
