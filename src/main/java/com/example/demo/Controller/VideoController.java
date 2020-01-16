@@ -5,7 +5,6 @@ import com.example.demo.repositories.VideoRepo;
 import com.example.demo.services.VideoService;
 import com.mongodb.client.gridfs.model.GridFSFile;
 import com.mongodb.util.JSON;
-import com.sun.deploy.net.HttpResponse;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
@@ -29,7 +28,7 @@ import java.io.OutputStream;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
-@RestController
+@Controller
 @RequestMapping("")
 public class VideoController {
 
@@ -38,7 +37,9 @@ public class VideoController {
     @Autowired
     private VideoRepo videorepo ;
 
+
     //@RequestMapping(value ="/videos/add/{title}",method = RequestMethod.POST )
+
     @PostMapping(value ="/videos/add/{title}", consumes = { "multipart/form-data" })
     public int addVideo(@PathVariable String title ,
                            @RequestParam("video") MultipartFile file, Model model) throws IOException {

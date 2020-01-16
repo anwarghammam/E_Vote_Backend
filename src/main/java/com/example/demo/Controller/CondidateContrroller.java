@@ -58,6 +58,18 @@ public class CondidateContrroller {
 
     }
 
+    @PostMapping("/add")
+    public void addCandidat(@RequestBody Candidate candidate){
+        this.condidateRepo.save(candidate);
+    }
+
+    @PostMapping("/addprogram/{id}")
+    public  void addProgrammeCandidate(@PathVariable String id, @RequestBody String[] programme){
+
+        Candidate candidate = this.condidateRepo.findByCin(id);
+        candidate.setPrograms(programme);
+        this.condidateRepo.save(candidate);
+    }
     /*
     @GetMapping("/createCandidate")
     public void createCandidattest(){
