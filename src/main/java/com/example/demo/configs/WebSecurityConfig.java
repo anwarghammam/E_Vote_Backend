@@ -70,6 +70,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/candidate/*").permitAll()
                 .antMatchers("/api/candidate/allcondidates").permitAll()
                 .antMatchers("/api/candidate/allfuturdebates").permitAll()
+                .antMatchers("/api/candidate/addprogram/*").permitAll()
+                .antMatchers("/api/candidate/addvideostocandidat/*").permitAll()
+
                 .antMatchers("/videos/*").permitAll()
                 .antMatchers("/videos/stream/*").permitAll()
                 .antMatchers("/videos/add/*").authenticated()

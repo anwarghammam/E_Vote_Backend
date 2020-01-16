@@ -22,6 +22,8 @@ public class Candidate extends  User {
     @DBRef
     private Resultat resultat ;
 
+    private String[] videos ;
+
 
 
     public int getFollows() {
@@ -89,6 +91,14 @@ public class Candidate extends  User {
                 ", rank=" + rank +
                 ", resultat=" + resultat +
                 '}';
+    }
+
+    public String[] getVideos() {
+        return videos;
+    }
+
+    public void setVideos(String[] videos) {
+        this.videos = videos;
     }
 }
 

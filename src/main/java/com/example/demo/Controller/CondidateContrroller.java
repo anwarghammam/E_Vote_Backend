@@ -60,14 +60,23 @@ public class CondidateContrroller {
 
     @PostMapping("/add")
     public void addCandidat(@RequestBody Candidate candidate){
+        candidate.setPassword(candidate.getCin());
         this.condidateRepo.save(candidate);
     }
 
     @PostMapping("/addprogram/{id}")
     public  void addProgrammeCandidate(@PathVariable String id, @RequestBody String[] programme){
+        Candidate candidate = this.condidateRepo.findByCin(id);
+
+        candidate.setPrograms(programme);
+        this.condidateRepo.save(candidate);
+    }
+
+    @PostMapping("/addvideostocandidat/{id}")
+    public  void addVideoCandidate(@PathVariable String id, @RequestBody String[] videos){
 
         Candidate candidate = this.condidateRepo.findByCin(id);
-        candidate.setPrograms(programme);
+        candidate.setVideos(videos);
         this.condidateRepo.save(candidate);
     }
     /*

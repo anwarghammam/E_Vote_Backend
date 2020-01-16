@@ -73,7 +73,6 @@ public class VideoController {
         for (video video:videos
              ) {
 
-
             FileCopyUtils.copy(video.getStream(), response.getOutputStream());
         }
 
