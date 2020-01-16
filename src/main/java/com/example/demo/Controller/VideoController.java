@@ -37,12 +37,15 @@ public class VideoController {
 
 
     //@RequestMapping(value ="/videos/add/{title}",method = RequestMethod.POST )
-    @PostMapping(value ="/videos/add/{title}", consumes = { "multipart/form-data" })
-    public String addVideo(@PathVariable String title ,
+    @PostMapping("/videos/add/")
+    public  String addVideo(
                            @RequestParam("video") MultipartFile file, Model model) throws IOException {
 
-        String id = videoService.addVideo(title, file);
-        return id;
+        System.out.println("kkkkk");
+      System.out.println(file.getSize());
+        /*
+        String id = videoService.addVideo(title, file);*/
+        return "id";
     }
 
 
