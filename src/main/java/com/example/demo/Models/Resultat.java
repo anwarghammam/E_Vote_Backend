@@ -19,7 +19,7 @@ public class Resultat implements Comparable< Resultat>{
     private int resultatparAgeVieux;
     @DBRef
     private List   <Region>  resultatParRegison ;
-    private int resultatFinal1;
+
 
     public String getId() {
         return id;

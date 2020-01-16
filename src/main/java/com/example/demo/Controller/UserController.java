@@ -143,6 +143,7 @@ public class UserController {
             Vote vote = voteRepo.findByIdVote(idVote);
             System.out.println("+++++++++++++++" + vote.getTotalParticipent());
             vote.setTotalParticipent(vote.getTotalParticipent() + 1);
+            System.out.println("after vote" + vote.getTotalParticipent());
             Candidate candidate1 = candidateRepo.findByNumVote(indexCandidate);
             System.out.println("++++++++++++++++++++++++++++++++++***************" + candidate1.getUser_id());
             List<Candidate> candidateList = vote.getListCandidatesParticipents();
