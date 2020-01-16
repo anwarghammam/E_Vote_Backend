@@ -14,6 +14,7 @@ import java.util.List;
 @Document(collection="debates")
 public class Debate {
     @Id
+    @Indexed
     private String id ;
 
 
@@ -21,8 +22,8 @@ public class Debate {
    private  Date date ;
     @DBRef
     private List<Candidate> candidates ;
-    @DBRef
-   private List<User> participants ;
+
+   private Integer participants ;
    private  String Subject ;
    private int likes ;
    private int loves ;
@@ -37,7 +38,7 @@ public class Debate {
    private Candidate candidat2;
 
 
-    public Debate(Date date, List<Candidate> candidates, List<User> participants, String subject, int likes, int loves, int hates, int wows, int angry) {
+    public Debate(Date date, List<Candidate> candidates, int participants, String subject, int likes, int loves, int hates, int wows, int angry) {
         this.date = date;
         this.candidates = candidates;
         this.participants = participants;
@@ -77,11 +78,11 @@ public class Debate {
         this.candidates = candidates;
     }
 
-    public List<User> getParticipants() {
+    public int getParticipants() {
         return this.participants;
     }
 
-    public void setParticipants(List<User> participants) {
+    public void setParticipants(int participants) {
         this.participants = participants;
     }
 

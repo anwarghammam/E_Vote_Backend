@@ -106,35 +106,46 @@ public class DebateController {
     }
 
     @GetMapping("/like/{id}")
-    public void add_like(@PathVariable String id){
+    public int add_like(@PathVariable String id){
         Debate debate = this.debaterepo.findDebateById(id);
         debate.setLikes(debate.getLikes()+1);
+        this.debaterepo.save(debate);
+        return(debate.getLikes()) ;
 
-
-
+    }
+    @GetMapping("/angry/{id}")
+    public int add_angry(@PathVariable String id){
+        Debate debate = this.debaterepo.findDebateById(id);
+        debate.setAngry(debate.getAngry()+1);
+        this.debaterepo.save(debate);
+        return(debate.getAngry()) ;
     }
     @GetMapping("/love/{id}")
     public void add_love(@PathVariable String id){
         Debate debate = this.debaterepo.findDebateById(id);
         debate.setLoves(debate.getLoves()+1);
-
+        this.debaterepo.save(debate);
 
 
     }
+    @GetMapping("/participate/{id}")
+    public int add_participant(@PathVariable String id){
+        Debate debate = this.debaterepo.findDebateById(id);
+        System.out.println(debate.getParticipants());
+        debate.setParticipants(debate.getParticipants()+1);
+        System.out.println((debate.getParticipants()));
+        this.debaterepo.save(debate);
+    return(debate.getParticipants());}
+
     @GetMapping("/wow/{id}")
     public void add_wow(@PathVariable String id){
         Debate debate = this.debaterepo.findDebateById(id);
         debate.setWows(debate.getWows()+1);
-
+        this.debaterepo.save(debate);
 
 
     }
-    @GetMapping("/angry/{id}")
-    public void add_angry(@PathVariable String id){
-        Debate debate = this.debaterepo.findDebateById(id);
-        debate.setAngry(debate.getAngry()+1);
 
-    }
 
 
 
