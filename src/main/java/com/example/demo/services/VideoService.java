@@ -14,7 +14,6 @@ import org.springframework.data.mongodb.gridfs.GridFsOperations;
 import org.springframework.data.mongodb.gridfs.GridFsTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import sun.text.resources.FormatData;
 
 import java.io.IOException;
 import java.io.InputStream;

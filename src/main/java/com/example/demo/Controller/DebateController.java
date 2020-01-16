@@ -16,8 +16,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static io.jsonwebtoken.lang.Collections.size;
-import static jdk.nashorn.internal.objects.ArrayBufferView.length;
+
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -32,7 +31,7 @@ public class DebateController {
     @GetMapping("/allfuturdebates")
     List<Debate> showall(){
         Date date = new Date();
-        System.out.println(date.getDate());
+      //  System.out.println(date.getDate());
 
         List<Debate> futurdebates =new ArrayList<Debate>();
 
@@ -55,7 +54,7 @@ public class DebateController {
         List<Debate> passeddebates=new ArrayList<Debate>();
         List<Debate> debates = this.debaterepo.findAll();
         System.out.println("******");
-        for(int i=0;i<size(debates);i++){
+        for(int i=0;i<debates.size();i++){
             if(debates.get(i).getDate().compareTo(date)<0){
                 System.out.println("*");
                 passeddebates.add(debates.get(i));
@@ -106,35 +105,46 @@ public class DebateController {
     }
 
     @GetMapping("/like/{id}")
-    public void add_like(@PathVariable String id){
+    public int add_like(@PathVariable String id){
         Debate debate = this.debaterepo.findDebateById(id);
         debate.setLikes(debate.getLikes()+1);
+        this.debaterepo.save(debate);
+        return(debate.getLikes()) ;
 
-
-
+    }
+    @GetMapping("/angry/{id}")
+    public int add_angry(@PathVariable String id){
+        Debate debate = this.debaterepo.findDebateById(id);
+        debate.setAngry(debate.getAngry()+1);
+        this.debaterepo.save(debate);
+        return(debate.getAngry()) ;
     }
     @GetMapping("/love/{id}")
     public void add_love(@PathVariable String id){
         Debate debate = this.debaterepo.findDebateById(id);
         debate.setLoves(debate.getLoves()+1);
-
+        this.debaterepo.save(debate);
 
 
     }
+    @GetMapping("/participate/{id}")
+    public int add_participant(@PathVariable String id){
+        Debate debate = this.debaterepo.findDebateById(id);
+        System.out.println(debate.getParticipants());
+        debate.setParticipants(debate.getParticipants()+1);
+        System.out.println((debate.getParticipants()));
+        this.debaterepo.save(debate);
+    return(debate.getParticipants());}
+
     @GetMapping("/wow/{id}")
     public void add_wow(@PathVariable String id){
         Debate debate = this.debaterepo.findDebateById(id);
         debate.setWows(debate.getWows()+1);
-
+        this.debaterepo.save(debate);
 
 
     }
-    @GetMapping("/angry/{id}")
-    public void add_angry(@PathVariable String id){
-        Debate debate = this.debaterepo.findDebateById(id);
-        debate.setAngry(debate.getAngry()+1);
 
-    }
 
 
 

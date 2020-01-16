@@ -43,8 +43,13 @@ public class AuthController {
     public ResponseEntity login(@RequestBody User user) {
         try {
             String username = user.getCin();
+            System.out.println(username);
+
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, user.getPassword()));
+
+
             String token = jwtTokenProvider.createToken(username, this.users.findByCin(username).getRoles());
+
             Map<Object, Object> model = new HashMap<>();
             model.put("username", username);
             //model.put("role",this.users.findByCin(username).getRoles());
@@ -71,8 +76,8 @@ public class AuthController {
         roles.add(e) ;
         user.setRoles(roles);
         userService.saveUser(user);
-       System.out.println(user.toString());
-
+        System.out.println(user.toString());
+        System.out.println(this.users.findByCin(user.getCin()).toString());
 
         return new ResponseEntity("done", HttpStatus.OK);
     }

@@ -25,7 +25,7 @@ public class VoteController {
     @PostMapping("/add")
     public ResponseEntity addVote(@RequestBody Vote votes) {
 
-        System.out.println(votes.isActivated());
+
         votes.setActivated(null);
         List<Candidate> candidates = new ArrayList<>();
         for (int i = 0; i < votes.getListCandidatesParticipents().size(); i++) {
@@ -62,6 +62,26 @@ public class VoteController {
     public List<Vote> getUpComming(){
     List<Vote>votes=this.voteRepo.findAllByActivated(null);
     return  votes ;
+    }
+
+    @GetMapping("activevote")
+    public List<Vote> activeVote(){
+        List<Vote>votes =this.voteRepo.findAllByActivated(new Boolean(true));
+        return votes ;
+    }
+
+    @PostMapping("/activatedesactivate")
+    public List<Vote> activate(@RequestBody List<Vote>votes){
+        System.out.println("hhhh");
+        for (int i=0;i<votes.size();i++){
+           this.voteRepo.save(votes.get(i));
+        }
+        return votes ;
+    }
+
+    @GetMapping("/vote")
+    public Vote getOneVote(){
+        return this.voteRepo.findAllByActivated(new Boolean(true)).get(0) ;
     }
 }
 
