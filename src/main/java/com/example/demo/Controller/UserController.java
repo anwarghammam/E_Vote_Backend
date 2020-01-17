@@ -47,6 +47,7 @@ public class UserController {
     public List<User> allusers(){
         return this.userRepo.findAll();
     }
+
     @GetMapping("/user/{cin}")
     public User getuser(@PathVariable String cin){
         return this.userRepo.findByCin(cin);

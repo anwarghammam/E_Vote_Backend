@@ -78,11 +78,11 @@ public class Debate {
         this.candidates = candidates;
     }
 
-    public int getParticipants() {
-        return this.participants;
+    public Integer getParticipants() {
+        return participants;
     }
 
-    public void setParticipants(int participants) {
+    public void setParticipants(Integer participants) {
         this.participants = participants;
     }
 

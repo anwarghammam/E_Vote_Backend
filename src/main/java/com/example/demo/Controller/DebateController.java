@@ -37,7 +37,6 @@ public class DebateController {
 
         List<Debate> debates = this.debaterepo.findAll();
           for(int i=0;i<debates.size();i++){
-
               if(debates.get(i).getDate().compareTo(date)>0){
                   futurdebates.add(debates.get(i));
 
@@ -46,6 +45,7 @@ public class DebateController {
 
 
        return futurdebates ;   }
+
     @GetMapping("/allcloseddebates")
     List<Debate> closeddebates(){
         Date date = new Date();
@@ -99,6 +99,7 @@ public class DebateController {
            return  new ResponseEntity("date already taken", HttpStatus.BAD_REQUEST);
        }
        else {
+
            this.debaterepo.save(debate);
            return new ResponseEntity("ok",HttpStatus.ACCEPTED);
        }
@@ -130,11 +131,14 @@ public class DebateController {
     @GetMapping("/participate/{id}")
     public int add_participant(@PathVariable String id){
         Debate debate = this.debaterepo.findDebateById(id);
-        System.out.println(debate.getParticipants());
-        debate.setParticipants(debate.getParticipants()+1);
-        System.out.println((debate.getParticipants()));
+        int participant=0 ;
+        if(debate.getParticipants() !=null){
+            participant=debate.getParticipants().intValue();
+        }
+        Integer integer =new Integer( participant+1) ;
+        debate.setParticipants(integer);
         this.debaterepo.save(debate);
-    return(debate.getParticipants());}
+        return(debate.getParticipants().intValue());}
 
     @GetMapping("/wow/{id}")
     public void add_wow(@PathVariable String id){

@@ -83,5 +83,7 @@ public class VoteController {
     public Vote getOneVote(){
         return this.voteRepo.findAllByActivated(new Boolean(true)).get(0) ;
     }
+
+    
 }
 
