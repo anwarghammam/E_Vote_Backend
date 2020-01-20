@@ -1,8 +1,10 @@
 package com.example.demo.Controller;
 
 import com.example.demo.Models.Candidate;
+import com.example.demo.Models.Resultat;
 import com.example.demo.Models.Role;
 import com.example.demo.repositories.CandidateRepo;
+import com.example.demo.repositories.ResultatRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +20,8 @@ public class CondidateContrroller {
 
     @Autowired
     CandidateRepo   condidateRepo ;
-
+    @Autowired
+    ResultatRepo resultatRepo ;
 
 
     @GetMapping("/allcondidates")
@@ -60,6 +63,16 @@ public class CondidateContrroller {
 
     @PostMapping("/add")
     public void addCandidat(@RequestBody Candidate candidate){
+        Resultat  resultat = new Resultat();
+       // Resultat resultat = new Resultat(0,0,0,0,0,0);
+        resultat.setResultatParGnederHomme(0);
+        resultat.setResultatParGenderFemme(0);
+        resultat.setResultatFinal(0);
+        resultat.setResultatParAgeJeune(0);
+        resultat.setResultatparAgeMoyen(0);
+        resultat.setResultatparAgeVieux(0);
+        Resultat r = resultatRepo.save(resultat);
+        candidate.setResultat(r);
         candidate.setPassword(candidate.getCin());
         this.condidateRepo.save(candidate);
     }
