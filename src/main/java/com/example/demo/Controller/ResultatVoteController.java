@@ -90,6 +90,7 @@ public List<Statistique>  statistiqueCalcul(@RequestParam  String idVote)
        Statistique statistique = new Statistique();
        statistique.calcul(l.get(i));
 
+       statistique.setIdVote(idVote);
        //statistique.setPourcentageTotal();
        //statistiqueRepo.save(statistique);
 
@@ -113,8 +114,16 @@ public List<Statistique>  statistiqueCalcul(@RequestParam  String idVote)
 
     public List<Statistique>  loadStatistique(@RequestParam  String idVote)
     {
+ Vote vote = voteRepo.findByIdVote(idVote);
+        List<Candidate> l = vote.getListCandidatesParticipents();
+        List<Statistique> statistiques = new ArrayList<Statistique>();
+       /* for(int i =0 ;i< l.size(); i++){
 
-       return statistiqueRepo.findAll() ;
+            Statistique statistique = statistiqueRepo.findByIdVote(idVote);
+            statistiques.add(statistique);
+        }*/
+       //return statistiques ;
+       return statistiqueRepo.findAllByIdVote(idVote);
     }
 
     @GetMapping ("/detailsStatistique")

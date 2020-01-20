@@ -19,6 +19,7 @@ public class Statistique {
     double getPourcentageAdulte ;
     int total ;
     double pourcentageTotal ;
+    String idVote ;
     public Statistique() {
     }
 
@@ -150,4 +151,11 @@ public class Statistique {
         this.setPourcentageVieux(pcVieux);
      }
 
+    public String getIdVote() {
+        return idVote;
+    }
+
+    public void setIdVote(String idVote) {
+        this.idVote = idVote;
+    }
 }
