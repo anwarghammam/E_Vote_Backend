@@ -44,6 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/auth/register").permitAll()
                 .antMatchers("/vote/add").permitAll()
                 .antMatchers("/vote/activate").permitAll()
+                .antMatchers("/api/vote/user/*").permitAll()
                 .antMatchers("/api/vote/candidate").permitAll()
                 .antMatchers("/api/vote/vote").permitAll()
                 .antMatchers("/api/vote/accueilUser").permitAll()
@@ -77,7 +78,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .antMatchers("/videos/*").permitAll()
                 .antMatchers("/videos/stream/*").permitAll()
-                .antMatchers("/videos/add/*").authenticated()
+                .antMatchers("/videos/add/*").permitAll()
 
                 .antMatchers("api/auth/allusers").hasAuthority("ADMIN").anyRequest().authenticated().and().csrf()
 

@@ -41,12 +41,12 @@ public class VideoController {
     //@RequestMapping(value ="/videos/add/{title}",method = RequestMethod.POST )
 
     @PostMapping(value ="/videos/add/{title}", consumes = { "multipart/form-data" })
-    public int addVideo(@PathVariable String title ,
+    public Object addVideo(@PathVariable String title ,
                            @RequestParam("video") MultipartFile file, Model model) throws IOException {
 
         Object id = videoService.addVideo(title, file);
         System.out.println(id) ;
-        return id.hashCode();
+       return(id);
     }
 
 
@@ -66,15 +66,6 @@ public class VideoController {
         FileCopyUtils.copy(video.getStream(), response.getOutputStream());
 
 }
-    @GetMapping("/videos/stream/")
-    public void streamVideo( HttpServletResponse response) throws Exception {
-        List<video> videos = videoService.getallvideos();
-        System.out.println(videos);
-        for (video video:videos
-             ) {
-
-            FileCopyUtils.copy(video.getStream(), response.getOutputStream());
-        }
 
 
-    }}
+    }

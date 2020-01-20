@@ -57,20 +57,5 @@ public class VideoService {
 
         return video ;
     }
-    public List getallvideos() throws IllegalStateException, IOException{
-         List videos = new ArrayList();
-        GridFSFindIterable files = gridFsTemplate.find(null);
-        System.out.println("*");
-        for (GridFSFile file:files
-             ) {
-            video video = new video();
-            video.setTitle(file.getMetadata().get("filename").toString());
 
-        System.out.println("***");
-        video.setStream(operations.getResource(file).getInputStream());
-        System.out.println("****");
-        videos.add(video);
-          }
-        return videos ;
-    }
 }

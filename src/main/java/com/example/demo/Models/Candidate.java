@@ -93,13 +93,7 @@ public class Candidate extends  User {
                 '}';
     }
 
-    public String[] getVideos() {
-        return videos;
-    }
 
-    public void setVideos(String[] videos) {
-        this.videos = videos;
-    }
 }
 
 

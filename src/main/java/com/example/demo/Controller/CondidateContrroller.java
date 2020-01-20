@@ -76,7 +76,7 @@ public class CondidateContrroller {
     public  void addVideoCandidate(@PathVariable String id, @RequestBody String[] videos){
 
         Candidate candidate = this.condidateRepo.findByCin(id);
-        candidate.setVideos(videos);
+
         this.condidateRepo.save(candidate);
     }
     /*
