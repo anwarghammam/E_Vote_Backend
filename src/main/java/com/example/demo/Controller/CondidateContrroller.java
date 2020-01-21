@@ -4,7 +4,11 @@ import com.example.demo.Models.Candidate;
 import com.example.demo.Models.Resultat;
 import com.example.demo.Models.Role;
 import com.example.demo.repositories.CandidateRepo;
+
+import com.example.demo.repositories.UserRepo;
+
 import com.example.demo.repositories.ResultatRepo;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +25,11 @@ public class CondidateContrroller {
     @Autowired
     CandidateRepo   condidateRepo ;
     @Autowired
+
+    UserRepo UserRepo ;
+    @Autowired
     ResultatRepo resultatRepo ;
+
 
 
     @GetMapping("/allcondidates")
@@ -63,6 +71,16 @@ public class CondidateContrroller {
 
     @PostMapping("/add")
     public void addCandidat(@RequestBody Candidate candidate){
+
+        Role e = new Role("5ddd8215fdb681718c00f54f","USER");
+        Role e1 = new Role("5ddd8215fdb681718c00f550","CONDIDATE");
+
+
+        Set<Role> roles = new HashSet<Role>();
+        roles.add(e) ;
+        roles.add(e1) ;
+        candidate.setRoles(roles);
+
         Resultat  resultat = new Resultat();
        // Resultat resultat = new Resultat(0,0,0,0,0,0);
         resultat.setResultatParGnederHomme(0);
@@ -73,8 +91,12 @@ public class CondidateContrroller {
         resultat.setResultatparAgeVieux(0);
         resultatRepo.save(resultat);
         candidate.setResultat(resultat);
+
         candidate.setPassword(candidate.getCin());
+
         this.condidateRepo.save(candidate);
+        this.UserRepo.save(candidate);
+        System.out.println("anwar"+candidate);
     }
 
     @PostMapping("/addprogram/{id}")
