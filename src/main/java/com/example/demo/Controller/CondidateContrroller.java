@@ -3,6 +3,7 @@ package com.example.demo.Controller;
 import com.example.demo.Models.Candidate;
 import com.example.demo.Models.Role;
 import com.example.demo.repositories.CandidateRepo;
+import com.example.demo.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,8 @@ public class CondidateContrroller {
 
     @Autowired
     CandidateRepo   condidateRepo ;
-
+    @Autowired
+    UserRepo UserRepo ;
 
 
     @GetMapping("/allcondidates")
@@ -60,8 +62,17 @@ public class CondidateContrroller {
 
     @PostMapping("/add")
     public void addCandidat(@RequestBody Candidate candidate){
-        candidate.setPassword(candidate.getCin());
+        Role e = new Role("5ddd8215fdb681718c00f54f","USER");
+        Role e1 = new Role("5ddd8215fdb681718c00f550","CONDIDATE");
+
+
+        Set<Role> roles = new HashSet<Role>();
+        roles.add(e) ;
+        roles.add(e1) ;
+        candidate.setRoles(roles);
         this.condidateRepo.save(candidate);
+        this.UserRepo.save(candidate);
+        System.out.println("anwar"+candidate);
     }
 
     @PostMapping("/addprogram/{id}")
