@@ -11,9 +11,9 @@ public class Resultat implements Comparable< Resultat>{
     @Id
 
     private  String id ;
-    private int  resultatFinal ;
+    private int  resultatFinal  ;
     private int resultatParGenderFemme;
-    private int resultatParGenderHomme ;
+    private int resultatParGenderHomme;
     private int resultatParAgeJeune ;
     private int resultatparAgeMoyen ;
     private int resultatparAgeVieux;
@@ -73,6 +73,9 @@ public class Resultat implements Comparable< Resultat>{
         return resultatparAgeVieux;
     }
 
+    public Resultat() {
+    }
+
     public void setResultatparAgeVieux(int resultatparAgeVieux) {
         this.resultatparAgeVieux = resultatparAgeVieux;
     }
@@ -83,6 +86,15 @@ public class Resultat implements Comparable< Resultat>{
 
     public void setResultatParRegison(List<Region> resultatParRegison) {
         this.resultatParRegison = resultatParRegison;
+    }
+
+    public Resultat(int resultatFinal, int resultatParGenderFemme, int resultatParGenderHomme, int resultatParAgeJeune, int resultatparAgeMoyen, int resultatparAgeVieux) {
+        this.resultatFinal = resultatFinal;
+        this.resultatParGenderFemme = resultatParGenderFemme;
+        this.resultatParGenderHomme = resultatParGenderHomme;
+        this.resultatParAgeJeune = resultatParAgeJeune;
+        this.resultatparAgeMoyen = resultatparAgeMoyen;
+        this.resultatparAgeVieux = resultatparAgeVieux;
     }
 
     @Override
