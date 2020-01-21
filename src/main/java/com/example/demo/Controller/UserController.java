@@ -166,11 +166,11 @@ public class UserController {
             if( ((user.getAge()>=30) && (user.getAge() <60))) {
                 resultat.setResultatparAgeMoyen(resultat.getResultatparAgeMoyen()+1);
             }
-              else {
+            if( ((user.getAge()>=60) && (user.getAge() <80))) {
                   resultat.setResultatparAgeVieux(resultat.getResultatparAgeVieux()+1);
             }
-              if(user.getGender() =="femme")
-              {
+              if(user.getGender().equals("female"))
+              { System.out.println("female Voted ******************************");
                   resultat.setResultatParGenderFemme(resultat.getResultatParGenderFemme()+1);
               }
                 else {

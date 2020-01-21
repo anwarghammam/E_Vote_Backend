@@ -71,8 +71,8 @@ public class CondidateContrroller {
         resultat.setResultatParAgeJeune(0);
         resultat.setResultatparAgeMoyen(0);
         resultat.setResultatparAgeVieux(0);
-        Resultat r = resultatRepo.save(resultat);
-        candidate.setResultat(r);
+        resultatRepo.save(resultat);
+        candidate.setResultat(resultat);
         candidate.setPassword(candidate.getCin());
         this.condidateRepo.save(candidate);
     }
